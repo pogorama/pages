@@ -214,7 +214,7 @@
        Masthead — Q15/Q16 inverted pyramid: lede + TL;DR up top.
        Greek meander rendered as a single 1-line SVG, not a band.
        ========================================================= */
-    .masthead { padding: var(--s-8) 0 var(--s-7); }
+    .masthead { padding: var(--s-8) 0 var(--s-7); position: relative; }
     .masthead .lede {
       font-size: var(--t-step-1);
       line-height: 1.5;
@@ -227,6 +227,27 @@
       color: var(--fore-mute);
       margin: 0 0 var(--s-4);
     }
+    /* Language switcher (Greek flag, upper-right of the masthead).
+       Tiny, calm, accessible label. Hidden on the Greek mirror page
+       where it would point at itself. */
+    .lang-switch {
+      position: absolute;
+      top: var(--s-4);
+      right: var(--s-4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      text-decoration: none;
+      color: var(--fore-mute);
+      padding: 0.25em 0.5em;
+      border: 1px solid transparent;
+      border-radius: 2px;
+    }
+    .lang-switch:hover,
+    .lang-switch:focus-visible { color: var(--fore); border-color: var(--rule); }
+    .lang-switch svg { display: block; width: 27px; height: 18px; }
     .meander {
       display: block;
       width: 100%;
@@ -696,10 +717,22 @@
 
   <header class="masthead" id="top">
     <div class="shell">
+      <a class="lang-switch" href="index.el.html" hreflang="el" lang="el" aria-label="Στα Ελληνικά (Greek version)">
+        <svg viewBox="0 0 27 18" aria-hidden="true">
+          <rect width="27" height="18" fill="#0d5eaf"/>
+          <rect y="2" width="27" height="2" fill="#fff"/>
+          <rect y="6" width="27" height="2" fill="#fff"/>
+          <rect y="10" width="27" height="2" fill="#fff"/>
+          <rect y="14" width="27" height="2" fill="#fff"/>
+          <rect width="10" height="10" fill="#0d5eaf"/>
+          <rect x="4" width="2" height="10" fill="#fff"/>
+          <rect y="4" width="10" height="2" fill="#fff"/>
+        </svg>
+        <span>Ελληνικά</span>
+      </a>
       <p class="eyebrow">For committee members of the Hellenic Community of Ireland</p>
       <h1>Microsoft for the Hellenic Community of Ireland</h1>
       <p class="lede">Microsoft runs a programme for charities and small nonprofits. Almost everything the society needs &mdash; email on the hellenicireland.ie domain, a website, online meetings, ways to handle membership and donations, training for community members and students &mdash; is <strong>free</strong> under this programme. This page explains, in plain English, what each piece is, what it does for the society, and how to start. No IT background needed.</p>
-      <p class="meta">Last reviewed May 2026. All sources are public Microsoft and GitHub pages, linked at the bottom. Where a price is shown it is the nonprofit rate, billed yearly.</p>
 
       <span class="meander" aria-hidden="true">
         <svg viewBox="0 0 400 14" preserveAspectRatio="xMidYMid meet">
@@ -711,7 +744,7 @@
       </span>
 
       <figure class="hero wide">
-        <img id="hero-img" src="images/hero.v1.jpg" alt="Black-figure Attic vase painting on warm cream pottery ground: a philosopher in a chiton reads from a tablet device, with a stylised cloud above and stacked server forms beside, framed by a Greek meander key-frieze." loading="eager" decoding="async">
+        <img id="hero-img" src="images/hero.v2.jpg" alt="Black-figure Attic vase painting on warm cream pottery ground: a female teacher in a chiton instructs children gathered around her, pointing to a wax tablet with Greek alphabet letters; a stylised cloud and a Windows-style four-pane logo float above, framed by a Greek meander key-frieze." loading="eager" decoding="async">
       </figure>
 
       <aside class="tldr" aria-label="One-paragraph summary">
@@ -893,6 +926,10 @@
           <li><strong>What is the trigger to upgrade?</strong> — the specific moment the free tier stops being enough.</li>
         </ol>
         <p class="note"><strong>Why this matters</strong>Most procurement mistakes come from one of these checks being skipped. Walk through all five, in order, every time.</p>
+
+        <figure class="hero">
+          <img src="images/reader.v1.jpg" alt="Black-figure Attic vase painting on warm cream pottery ground: a philosopher in a chiton reads from a tablet device, with a stylised cloud above and stacked server forms beside, framed by a Greek meander key-frieze." loading="lazy" decoding="async">
+        </figure>
       </div>
     </div>
     </details>

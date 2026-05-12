@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Microsoft για την Ελληνική Κοινότητα της Ιρλανδίας — ένας οδηγός σε απλά λόγια</title>
+  <meta name="description" content="Τι προσφέρει το δωρεάν πρόγραμμα της Microsoft για φιλανθρωπικούς οργανισμούς στην Ελληνική Κοινότητα της Ιρλανδίας, τι κοστίζει χρήματα και τι να κάνετε πρώτα. Γραμμένο για μέλη επιτροπής χωρίς γνώσεις πληροφορικής.">
+  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    /* =========================================================
+       Tokens — Manifesto Ch 6: 3-4 neutrals + 1 accent + 1 warning.
+       All values are CSS custom properties at :root and overridden
+       in @media (prefers-color-scheme: dark) for a single switch.
+       ========================================================= */
+    :root {
+      /* Neutrals (warm paper) */
+      --bg:        #fafaf7;
+      --bg-elev:   #ffffff;
+      --bg-sunk:  #f1efe8;
+      --fore:      #111418;
+      --fore-mute: #5a626d;
+      --line:      #e5e2da;
+      --line-strong: #cfcbbf;
+
+      /* One accent (interactive) + one warning (caution / not included) */
+      /* Single accent (terracotta — harmonises with the black-figure vase
+         imagery and the paper-warm background) and a darker warning hue
+         that still reads as caution next to the accent. */
+      --accent:    #a44a1f;
+      --accent-ink:#6a2e10;
+      --accent-bg: #f5ead9;
+      --warn:      #5d1818;
+      --warn-bg:   #f1dad6;
+
+      /* Type scale — modular ratio ~1.25 (major third), capped */
+      --t-step--1: clamp(0.86rem, 0.83rem + 0.15vw, 0.92rem);
+      --t-step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.10rem);
+      --t-step-1:  clamp(1.18rem, 1.12rem + 0.32vw, 1.32rem);
+      --t-step-2:  clamp(1.42rem, 1.32rem + 0.55vw, 1.65rem);
+      --t-step-3:  clamp(1.75rem, 1.58rem + 0.92vw, 2.15rem);
+      --t-step-4:  clamp(2.20rem, 1.92rem + 1.55vw, 2.95rem);
+
+      /* Spacing — geometric scale, base 1rem */
+      --s-1: 0.25rem;
+      --s-2: 0.5rem;
+      --s-3: 0.75rem;
+      --s-4: 1rem;
+      --s-5: 1.5rem;
+      --s-6: 2rem;
+      --s-7: 3rem;
+      --s-8: 4.5rem;
+      --s-9: 6rem;
+
+      --measure: 64ch;
+      --shell:   min(100% - 2rem, 70ch);
+      --shell-wide: min(100% - 2rem, 92ch);
+
+      --radius: 4px;
+      --radius-lg: 8px;
+
+      /* Type stacks (no web fonts; system-only for speed + reliability) */
+      --font-serif: "Iowan Old Style", "Source Serif Pro", "Source Serif 4",
+                    Charter, "Palatino Linotype", "Cambria", Georgia, serif;
+      --font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono:  ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Code",
+                    Consolas, "Liberation Mono", monospace;
+
+      /* Passe-partout mat for figures — warmer than --bg so images of any
+         ground colour look intentionally framed, not pasted on. */
+      --mat:        #efe6d4;
+      --mat-edge:   #b69b6a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #14161a;
+        --bg-elev:   #1c1f24;
+        --bg-sunk:  #0f1115;
+        --fore:      #e8e6df;
+        --fore-mute: #9aa1ab;
+        --line:      #2a2e34;
+        --line-strong: #3a3f47;
+
+        --accent:    #d68a5b;
+        --accent-ink:#e8b18a;
+        --accent-bg: #2a1b10;
+        --warn:      #e08070;
+        --warn-bg:   #2a1414;
+
+        --mat:        #221c14;
+        --mat-edge:   #5a4a32;
+      }
+    }
+
+    /* Forced-colors (Windows High Contrast) — keep focus visible */
+    @media (forced-colors: active) {
+      :root { --accent: LinkText; --warn: Mark; --line: GrayText; }
+      a:focus-visible, button:focus-visible, summary:focus-visible {
+        outline: 2px solid Highlight;
+      }
+    }
+
+    /* =========================================================
+       Reset + base
+       ========================================================= */
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fore);
+      font-family: var(--font-serif);
+      font-size: var(--t-step-0);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Headings: sans, tight, slightly tracked-in */
+    h1, h2, h3, h4 {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--fore);
+      margin: 0 0 var(--s-4);
+    }
+    h1 { font-size: var(--t-step-4); letter-spacing: -0.02em; }
+    h2 { font-size: var(--t-step-3); letter-spacing: -0.015em; }
+    h3 { font-size: var(--t-step-1); }
+    h4 { font-size: var(--t-step-0); text-transform: none; }
+
+    p { margin: 0 0 var(--s-4); max-width: var(--measure); }
+    ul, ol { margin: 0 0 var(--s-4); padding-left: 1.4em; }
+    li { margin: var(--s-1) 0; }
+    li > p { margin-bottom: var(--s-2); }
+
+    strong { font-weight: 700; color: var(--fore); }
+    em { font-style: italic; }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 0.06em;
+      text-underline-offset: 0.22em;
+      text-decoration-color: color-mix(in oklch, var(--accent) 50%, transparent);
+    }
+    a:hover { text-decoration-thickness: 0.12em; text-decoration-color: currentColor; }
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    code, kbd, samp {
+      font-family: var(--font-mono);
+      font-size: 0.92em;
+      background: var(--bg-sunk);
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: var(--s-7) 0;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      padding: var(--s-3) var(--s-4);
+      background: var(--accent);
+      color: #fff !important;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+    .skip-link:focus-visible { left: var(--s-3); top: var(--s-3); outline: none; }
+
+    /* =========================================================
+       Layout shells (Manifesto Ch 5: one column; .wide is the
+       deliberate escape hatch from Q59).
+       ========================================================= */
+    .shell      { width: var(--shell);      margin-inline: auto; }
+    .shell-wide { width: var(--shell-wide); margin-inline: auto; }
+
+    /* =========================================================
+       Section bands — alternation by background only, no decoration.
+       ========================================================= */
+    .band { padding: var(--s-8) 0; border-top: 1px solid var(--line); }
+    .band:first-of-type { border-top: 0; }
+    .band.tint   { background: var(--bg-sunk); }
+    .band.elev   { background: var(--bg-elev); }
+    .band > .shell > h2:first-child,
+    .band > .shell-wide > h2:first-child { margin-top: 0; }
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fore-mute);
+      margin: 0 0 var(--s-3);
+    }
+
+    /* =========================================================
+       Masthead — Q15/Q16 inverted pyramid: lede + TL;DR up top.
+       Greek meander rendered as a single 1-line SVG, not a band.
+       ========================================================= */
+    .masthead { padding: var(--s-8) 0 var(--s-7); position: relative; }
+    .masthead .lede {
+      font-size: var(--t-step-1);
+      line-height: 1.5;
+      color: var(--fore);
+      max-width: var(--measure);
+    }
+    .masthead .meta {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      color: var(--fore-mute);
+      margin: 0 0 var(--s-4);
+    }
+    /* Language switcher (Greek flag, upper-right of the masthead).
+       Tiny, calm, accessible label. Hidden on the Greek mirror page
+       where it would point at itself. */
+    .lang-switch {
+      position: absolute;
+      top: var(--s-4);
+      right: var(--s-4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      text-decoration: none;
+      color: var(--fore-mute);
+      padding: 0.25em 0.5em;
+      border: 1px solid transparent;
+      border-radius: 2px;
+    }
+    .lang-switch:hover,
+    .lang-switch:focus-visible { color: var(--fore); border-color: var(--rule); }
+    .lang-switch svg { display: block; width: 27px; height: 18px; }
+    .meander {
+      display: block;
+      width: 100%;
+      height: 14px;
+      margin: var(--s-5) 0 var(--s-6);
+      color: var(--accent);
+    }
+    .meander svg { display: block; width: 100%; height: 100%; }
+
+    /* Hero figure — column-width unless `.wide` (Q59).
+       Passe-partout mat: warm-cream padding around the image plus a 1px
+       parchment edge. Decouples the image's own background from the page,
+       so any image (vase ground, photo, screenshot) sits coherently. */
+    figure.hero, figure.figure {
+      margin: var(--s-5) 0 var(--s-6);
+      background: var(--mat);
+      padding: var(--s-4);
+      border: 1px solid var(--mat-edge);
+      border-radius: var(--radius-lg);
+    }
+    figure.figure { padding: var(--s-3); }
+    figure.figure img, figure.hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 0;
+    }
+    figure.wide { width: var(--shell-wide); max-width: 100%; }
+    figcaption {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      color: var(--fore-mute);
+      margin-top: var(--s-3);
+      padding: 0 var(--s-1);
+      text-align: left;
+    }
+    @media (prefers-color-scheme: dark) {
+      figcaption { color: var(--fore-mute); }
+    }
+
+    /* =========================================================
+       TL;DR panel — high-contrast, sans, ordered list.
+       Manifesto Ch 4 (whitespace as structure) + Q15/Q16.
+       ========================================================= */
+    .tldr {
+      background: var(--accent-bg);
+      border: 1px solid color-mix(in oklch, var(--accent) 35%, transparent);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: var(--s-5) var(--s-6);
+      margin: var(--s-6) 0;
+    }
+    .tldr h2 {
+      font-size: var(--t-step-1);
+      margin-bottom: var(--s-3);
+    }
+    .tldr ol { margin: 0; padding-left: 1.4em; font-family: var(--font-sans); }
+    .tldr li { margin: var(--s-2) 0; line-height: 1.5; }
+    .tldr li strong { color: var(--accent-ink); }
+
+    /* =========================================================
+       Sticky TOC — Q51 flat list, sans, current section highlighted.
+       ========================================================= */
+    .toc {
+      position: sticky; top: 0;
+      background: color-mix(in oklch, var(--bg) 92%, transparent);
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+    .toc-inner {
+      display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4);
+      padding: var(--s-3) 0;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+    }
+    .toc a {
+      color: var(--fore-mute);
+      text-decoration: none;
+      padding: 2px 0;
+      border-bottom: 2px solid transparent;
+    }
+    .toc a:hover { color: var(--fore); border-bottom-color: var(--line-strong); }
+    .toc a[aria-current="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* =========================================================
+       Comparison table (Q34 — table only for true 2-axis content)
+       ========================================================= */
+    .compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      margin: var(--s-4) 0 var(--s-5);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .compare caption {
+      caption-side: top;
+      text-align: left;
+      font-weight: 600;
+      color: var(--fore-mute);
+      padding: 0 0 var(--s-2);
+    }
+    .compare th, .compare td {
+      text-align: left;
+      vertical-align: top;
+      padding: var(--s-3) var(--s-4);
+      border-bottom: 1px solid var(--line);
+    }
+    .compare thead th {
+      background: var(--bg-sunk);
+      font-weight: 700;
+      color: var(--fore);
+      font-size: var(--t-step--1);
+    }
+    .compare tbody tr:last-child td { border-bottom: 0; }
+    .compare td.free  { color: var(--accent); font-weight: 600; }
+    .compare td.cost  { color: var(--warn); font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      .compare td.free { color: var(--accent-ink); }
+    }
+
+    /* Scroll wrapper for narrow screens */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* =========================================================
+       Inline pills / tags
+       ========================================================= */
+    .pill {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      font-weight: 600;
+      padding: 0.15em 0.6em;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      color: var(--accent-ink);
+      border: 1px solid color-mix(in oklch, var(--accent) 30%, transparent);
+      letter-spacing: 0.01em;
+    }
+    .pill.warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border-color: color-mix(in oklch, var(--warn) 35%, transparent);
+    }
+    @media (prefers-color-scheme: dark) {
+      .pill { color: var(--accent); }
+    }
+
+    /* =========================================================
+       Callouts — Q49/Q50 one accent + one warning, no extra colour.
+       ========================================================= */
+    .note, .warn-callout {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-bg);
+      padding: var(--s-4) var(--s-5);
+      border-radius: var(--radius);
+      margin: var(--s-5) 0;
+    }
+    .warn-callout { border-left-color: var(--warn); background: var(--warn-bg); }
+    .note  p:last-child, .warn-callout p:last-child { margin-bottom: 0; }
+    .note  > strong:first-child, .warn-callout > strong:first-child {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--s-2);
+    }
+    .note > strong:first-child { color: var(--accent-ink); }
+    .warn-callout > strong:first-child { color: var(--warn); }
+    @media (prefers-color-scheme: dark) {
+      .note > strong:first-child { color: var(--accent); }
+    }
+
+    /* =========================================================
+       Details / disclosure — Q33 "progressive disclosure"
+       Uses native <details>; no JS required.
+       ========================================================= */
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg-elev);
+      margin: var(--s-3) 0;
+    }
+    details > summary {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      cursor: pointer;
+      padding: var(--s-3) calc(var(--s-4) + 1.5em) var(--s-3) var(--s-4);
+      list-style: none;
+      position: relative;
+      color: var(--fore);
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::after {
+      content: "＋";
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: var(--fore-mute);
+      position: absolute;
+      right: var(--s-4);
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      transition: transform 0.18s;
+    }
+    details[open] > summary::after { content: "−"; }
+    details > summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+    .details-body { padding: 0 var(--s-4) var(--s-4); }
+    .details-body > *:first-child { margin-top: 0; }
+
+    /* Price disclosures within "not included" — same component, smaller */
+    details.cost > summary {
+      background: var(--warn-bg);
+      color: var(--warn);
+      font-size: var(--t-step--1);
+    }
+    details.cost { border-color: color-mix(in oklch, var(--warn) 30%, var(--line)); }
+
+    /* =========================================================
+       Details section (collapsed by default; one click per topic).
+       ========================================================= */
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      margin-top: var(--s-4);
+    }
+    .detail-item {
+      margin: 0;
+      background: var(--bg-elev);
+    }
+    .detail-item > summary {
+      font-size: var(--t-step-0);
+      font-weight: 600;
+      padding: var(--s-3) calc(var(--s-4) + 1.5em) var(--s-3) var(--s-4);
+    }
+    .detail-item[open] > summary {
+      border-bottom: 1px solid var(--line);
+    }
+    .detail-item > .detail-body { padding: var(--s-4); }
+    .detail-item > .detail-body > .shell,
+    .detail-item > .detail-body > .shell-wide {
+      padding: 0;
+      max-width: none;
+    }
+    .detail-item > .detail-body > .shell > *:first-child,
+    .detail-item > .detail-body > .shell-wide > *:first-child {
+      margin-top: 0;
+    }
+    .detail-item .eyebrow { margin-top: 0; }
+    .detail-item h2 { margin-top: 0.2em; }
+
+    /* =========================================================
+       Three pillars (Section 0 — plain-English overview).
+       Same visual grammar as .flow steps but parallel, not sequential.
+       ========================================================= */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-4);
+      margin: var(--s-5) 0 var(--s-4);
+      align-items: stretch;
+    }
+    .pillars .pillar {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: var(--s-4) var(--s-4) var(--s-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .pillars .pillar h3 {
+      font-size: var(--t-step-1);
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-3);
+    }
+    .pillars .pillar h3 .num {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 0.1em 0.55em;
+    }
+    .pillars .pillar p  { font-size: var(--t-step--1); margin: 0; line-height: 1.5; }
+    .pillars .pillar ol { font-size: var(--t-step--1); padding-left: 1.6em; margin: var(--s-1) 0 0; }
+    .pillars .pillar li { margin: var(--s-2) 0; padding-left: 0.2em; }
+    .pillars .pillar li::marker { color: var(--accent); font-weight: 700; font-family: var(--font-sans); }
+    .pillars .pillar code { overflow-wrap: anywhere; word-break: break-word; }
+    .pillars .pillar .ms-words {
+      margin-top: auto;
+      font-family: var(--font-sans);
+      font-size: var(--t-step--2);
+      color: var(--fore-mute);
+      padding-top: var(--s-3);
+      border-top: 1px dotted var(--line);
+    }
+    .pillars .pillar .ms-words a { font-weight: 600; }
+    @media (max-width: 860px) {
+      .pillars { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       Source list — flat, single column.
+       ========================================================= */
+    .sources h3 { font-family: var(--font-sans); margin-top: var(--s-6); }
+    .sources ol { font-family: var(--font-sans); font-size: var(--t-step--1); }
+    .sources li { margin: var(--s-2) 0; overflow-wrap: anywhere; }
+
+    /* =========================================================
+       "What to do next" flow diagram — HTML+CSS Grid for the boxes
+       (so links are real anchors), inline SVG only for arrows.
+       Manifesto Ch 1: HTML is load-bearing.
+       ========================================================= */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-4);
+      margin: var(--s-5) 0 var(--s-3);
+      position: relative;
+      align-items: stretch;
+    }
+    .flow .step {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: var(--s-4) var(--s-4) var(--s-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .flow .step h3 {
+      font-size: var(--t-step-1);
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-3);
+    }
+    .flow .step h3 .num {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 0.1em 0.55em;
+    }
+    .flow .step p { font-size: var(--t-step--1); margin-bottom: 0; line-height: 1.5; }
+    .flow .step ul { font-size: var(--t-step--1); padding-left: 1.2em; margin: var(--s-2) 0 0; }
+    .flow .step li { margin: var(--s-2) 0; }
+
+    /* Inline arrows between flow steps */
+    .flow-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      pointer-events: none;
+    }
+    .flow-arrow svg { width: 28px; height: 28px; display: block; }
+    .flow-arrow.a1 { left: calc(33.333% - 14px); }
+    .flow-arrow.a2 { left: calc(66.666% - 14px); }
+
+    /* Parallel band — skilling */
+    .flow-parallel {
+      margin-top: var(--s-5);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--s-5);
+      align-items: stretch;
+      background: var(--bg-sunk);
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-lg);
+      padding: var(--s-5) var(--s-6);
+    }
+    .flow-parallel .label {
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: var(--s-2);
+    }
+    .flow-parallel h3 {
+      font-size: var(--t-step-1);
+      margin: 0 0 var(--s-3);
+    }
+    .flow-parallel .skill-image {
+      align-self: center;
+      max-width: 240px;
+      background: var(--mat);
+      padding: var(--s-3);
+      border: 1px solid var(--mat-edge);
+      border-radius: var(--radius-lg);
+      margin: 0;
+    }
+    .flow-parallel .skill-image img {
+      display: block;
+      width: 100%; height: auto;
+      border-radius: 4px;
+      border: 0;
+    }
+
+    /* Narrow viewport: stack flow steps vertically; arrows turn into down-chevrons */
+    @media (max-width: 760px) {
+      .flow { grid-template-columns: 1fr; }
+      .flow-arrow { position: static; transform: rotate(90deg); margin: 0 auto; }
+      .flow-arrow.a1, .flow-arrow.a2 { left: auto; }
+      .flow-parallel { grid-template-columns: 1fr; }
+      .flow-parallel .skill-image { max-width: 100%; order: -1; }
+    }
+
+    /* =========================================================
+       Footer
+       ========================================================= */
+    footer.foot {
+      padding: var(--s-7) 0 var(--s-8);
+      border-top: 1px solid var(--line);
+      color: var(--fore-mute);
+      font-size: var(--t-step--1);
+      font-family: var(--font-sans);
+    }
+    footer.foot p { max-width: var(--measure); }
+
+    .top-link {
+      display: inline-block;
+      margin-top: var(--s-5);
+      font-family: var(--font-sans);
+      font-size: var(--t-step--1);
+    }
+
+    /* =========================================================
+       Print — Q63 minimal block.
+       ========================================================= */
+    @media print {
+      .toc, .skip-link, .meander, .flow-arrow { display: none; }
+      body { background: #fff; color: #000; font-size: 10.5pt; }
+      a { color: #000; text-decoration: underline; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #444; }
+      .band { padding: 0.6rem 0; border-top: 1px solid #ccc; break-inside: avoid; }
+      details, details.cost { break-inside: avoid; border-color: #ccc; }
+      details > summary::after { display: none; }
+      details:not([open]) .details-body { display: block; }
+      figure { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+  <header class="masthead" id="top">
+    <div class="shell">
+      <a class="lang-switch" href="index.html" hreflang="en" lang="en" aria-label="In English (English version)">
+        <svg viewBox="0 0 27 18" aria-hidden="true">
+          <rect width="9" height="18" fill="#009A44"/>
+          <rect x="9" width="9" height="18" fill="#ffffff"/>
+          <rect x="18" width="9" height="18" fill="#FF7900"/>
+        </svg>
+        <span>English</span>
+      </a>
+      <p class="eyebrow">Για τα μέλη της επιτροπής της Ελληνικής Κοινότητας της Ιρλανδίας</p>
+      <h1>Microsoft για την Ελληνική Κοινότητα της Ιρλανδίας</h1>
+      <p class="lede">Η Microsoft έχει ένα πρόγραμμα για φιλανθρωπικούς οργανισμούς και μικρούς μη κερδοσκοπικούς συλλόγους. Σχεδόν όλα όσα χρειάζεται ο σύλλογος &mdash; email στον τομέα hellenicireland.ie, μια ιστοσελίδα, διαδικτυακές συναντήσεις, τρόποι διαχείρισης μελών και δωρεών, εκπαίδευση για μέλη της κοινότητας και μαθητές &mdash; είναι <strong>δωρεάν</strong> μέσα από αυτό το πρόγραμμα. Αυτή η σελίδα εξηγεί, σε απλά λόγια, τι είναι το κάθε κομμάτι, τι κάνει για τον σύλλογο και πώς να ξεκινήσετε. Δεν χρειάζονται γνώσεις πληροφορικής.</p>
+
+      <span class="meander" aria-hidden="true">
+        <svg viewBox="0 0 400 14" preserveAspectRatio="xMidYMid meet">
+          <pattern id="mp" x="0" y="0" width="28" height="14" patternUnits="userSpaceOnUse">
+            <path d="M0 13 H6 V3 H22 V13 H28 M10 13 V7 H18 V13" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          </pattern>
+          <rect width="400" height="14" fill="url(#mp)"/>
+        </svg>
+      </span>
+
+      <figure class="hero wide">
+        <img id="hero-img" src="images/hero.v2.jpg" alt="Αττική αγγειογραφία μελανόμορφου ρυθμού σε ζεστό κρεμώδες κεραμικό φόντο: μια δασκάλα με χιτώνα διδάσκει παιδιά γύρω της, δείχνοντας μια κέρινη πινακίδα με γράμματα του ελληνικού αλφαβήτου· πάνω αιωρείται ένα στυλιζαρισμένο σύννεφο και ένα λογότυπο με τέσσερα τετράγωνα σε στυλ Windows, σε πλαίσιο με ελληνικό μαίανδρο." loading="eager" decoding="async">
+      </figure>
+
+      <aside class="tldr" aria-label="Σύνοψη μιας παραγράφου">
+        <h2>Σύντομη έκδοση</h2>
+        <ol>
+          <li><strong>Email, Office και Teams</strong> &mdash; δωρεάν για έως 300 μέλη της επιτροπής και εθελοντές. Δουλεύει σε οποιοδήποτε πρόγραμμα περιήγησης. (Η Microsoft το ονομάζει <em>Microsoft 365 Business Basic</em>.)</li>
+          <li><strong>Ένας μικρός διακομιστής στο κέντρο δεδομένων της Microsoft</strong> &mdash; $2.000 δωρεάν πίστωση ετησίως. Επαρκές για την ιστοσελίδα του συλλόγου, μια βάση δεδομένων μελών και μικρούς αυτοματισμούς. (Η Microsoft το ονομάζει <em>Azure</em>.)</li>
+          <li><strong>Αυτοματοποίηση επαναλαμβανόμενων εργασιών</strong> μεταξύ εφαρμογών (π.χ. όταν φτάνει μια πληρωμή, στέλνεται email ευχαριστίας) &mdash; δωρεάν για τις βασικές περιπτώσεις. (Η Microsoft το ονομάζει <em>Power Automate</em>.)</li>
+          <li><strong>Ένας χώρος για τον κώδικα της ιστοσελίδας</strong> &mdash; δωρεάν. Ο προαιρετικός βοηθός τεχνητής νοημοσύνης <em>Copilot</em> είναι επί πληρωμή. (Η Microsoft το ονομάζει <em>GitHub</em>.)</li>
+          <li><strong>Δωρεάν εκπαίδευση για νέα μέλη και δασκάλους</strong> &mdash; STEM, τεχνητή νοημοσύνη και ψηφιακές δεξιότητες, με κέντρο στο Δουβλίνο και διαδικτυακά. (Η Microsoft το ονομάζει <em>DreamSpace</em>.)</li>
+          <li><strong>Windows 11 Pro για έως 50 φορητούς υπολογιστές του συλλόγου</strong> &mdash; μέσω του συνεργάτη TechSoup.</li>
+        </ol>
+      </aside>
+    </div>
+  </header>
+
+
+  <main id="main">
+
+    <!-- ============================================================
+         0. Start here — plain-English overview (three pillars).
+            Framing: outcomes/jobs-to-be-done, not Microsoft business units.
+            Cites design_qna.md Q1 (audience), Q2 (JTBD), Q56 (definitions).
+         ============================================================ -->
+    <section class="band" id="start">
+      <div class="shell">
+        <p class="eyebrow">Ξεκινήστε εδώ</p>
+        <h2>Τρεις Πυλώνες Υποστήριξης</h2>
+        <p>Αν δεν έχετε ξανακούσει για το «Azure» ή το «GitHub», είναι φυσιολογικό &mdash; τα περισσότερα μέλη της επιτροπής ενός συλλόγου αυτού του μεγέθους δεν τα έχουν ακούσει. Παρακάτω είναι τι κάνει στην πράξη το πρόγραμμα της Microsoft για τον σύλλογο, ομαδοποιημένο σε τρία πράγματα που ήδη ενδιαφέρουν τον σύλλογο.</p>
+
+        <div class="pillars">
+
+          <article class="pillar">
+            <h3><span class="num">1</span> Email, έγγραφα και συναντήσεις</h3>
+            <p><strong>Τι είναι.</strong> Τα καθημερινά εργαλεία που η επιτροπή ήδη χρησιμοποιεί κατά το ήμισυ &mdash; email, Word, Excel, PowerPoint, βιντεοκλήσεις και κοινόχρηστα αρχεία &mdash; αλλά στον τομέα του ίδιου του συλλόγου (<strong>@hellenicireland.ie</strong>, για παράδειγμα) και όλα σε ένα μέρος. Η Microsoft πουλάει αυτή τη συλλογή ως <em>Microsoft 365</em>.</p>
+            <p><strong>Τι κάνει για τον σύλλογο:</strong></p>
+            <ol>
+              <li>Επαγγελματικές διευθύνσεις email για την επιτροπή &mdash; <em>treasurer@hellenicireland.ie</em> αντί για προσωπικό Gmail.</li>
+              <li>Word, Excel και PowerPoint σε οποιοδήποτε πρόγραμμα περιήγησης &mdash; για ενημερωτικά δελτία, λογαριασμούς και διαφάνειες για τα μαθήματα ελληνικών.</li>
+              <li>Βιντεοκλήσεις Microsoft Teams για τις συνεδριάσεις της επιτροπής, με εγγραφή και κοινόχρηστες σημειώσεις.</li>
+              <li>1&nbsp;TB κοινόχρηστου διαδικτυακού αποθηκευτικού χώρου ανά άτομο (η Microsoft το ονομάζει <em>OneDrive</em>) &mdash; αντικαθιστά τα συνημμένα email και τα χαμένα στικάκια USB.</li>
+              <li>Windows 11 Pro για έως 50 φορητούς υπολογιστές του συλλόγου (π.χ. για το σχολείο).</li>
+            </ol>
+            <p class="ms-words">Με τους όρους της Microsoft: <strong>Microsoft 365 Business Basic</strong> (δωρεάν, έως 300 χρήστες) + <strong>Windows 11 Pro</strong> (έως 50 άδειες). <a href="#microsoft-365">Λεπτομέρειες ↓</a></p>
+          </article>
+
+          <article class="pillar">
+            <h3><span class="num">2</span> Ιστοσελίδα, μητρώα μελών και αυτοματισμός</h3>
+            <p><strong>Τι είναι.</strong> Ένας μικρός σύλλογος χρειάζεται επίσης μια ιστοσελίδα, ένα μέρος να κρατάει αρχεία μελών και έναν τρόπο να χειρίζεται τις βαρετές επαναλαμβανόμενες εργασίες αυτόματα. Το cloud της Microsoft (<em>Azure</em>), το εργαλείο αυτοματισμού της Microsoft (<em>Power Automate</em>) και η υπηρεσία αποθήκευσης κώδικα της Microsoft (<em>GitHub</em>) καλύπτουν και τα τρία.</p>
+            <p><strong>Τι κάνει για τον σύλλογο:</strong></p>
+            <ol>
+              <li>Δημιουργία και φιλοξενία της ιστοσελίδας του συλλόγου &mdash; στους διακομιστές της Microsoft, δωρεάν με την πίστωση.</li>
+              <li>Διατήρηση μιας απλής βάσης δεδομένων μελών (ονόματα, διευθύνσεις, ημερομηνίες ανανέωσης).</li>
+              <li>Αυτόματη αποστολή του email καλωσορίσματος όταν εγγράφεται ένα νέο μέλος.</li>
+              <li>Σύνδεση με την τράπεζα ή με Stripe / Revolut, ώστε ο ταμίας να μην καταχωρεί κάθε πληρωμή με το χέρι.</li>
+              <li>Αποθήκευση του κώδικα και των ρυθμίσεων της ιστοσελίδας σε ένα κοινόχρηστο μέρος όπου μπορούν να συνεργάζονται οι εθελοντές της επιτροπής.</li>
+            </ol>
+            <p class="ms-words">Με τους όρους της Microsoft: <strong>Azure</strong> (πίστωση $2.000/έτος) + <strong>Power Automate</strong> (βασικές ροές) + <strong>GitHub</strong> (δωρεάν άδεια Team). <a href="#azure">Λεπτομέρειες ↓</a></p>
+          </article>
+
+          <article class="pillar">
+            <h3><span class="num">3</span> Εκπαίδευση για μέλη της κοινότητας και μαθητές</h3>
+            <p><strong>Τι είναι.</strong> Η Microsoft χρηματοδοτεί επίσης δωρεάν εκπαιδευτικά προγράμματα για φιλανθρωπικούς οργανισμούς, σχολεία και κοινοτικές ομάδες. Διεξάγονται από κέντρο στο Δουβλίνο και διαδικτυακά, και απευθύνονται τόσο σε αρχάριους όσο και σε εκπαιδευτικούς.</p>
+            <p><strong>Τι κάνει για τον σύλλογο:</strong></p>
+            <ol>
+              <li>Δωρεάν εργαστήρια για μέλη της επιτροπής στα ίδια εργαλεία που χρησιμοποιεί ο σύλλογος.</li>
+              <li>Συνεδρίες STEM, τεχνητής νοημοσύνης και ψηφιακών δεξιοτήτων για νέα μέλη της κοινότητας (το <em>DreamSpace</em> της Microsoft, με κέντρο στο Δουβλίνο).</li>
+              <li>Η τεχνητή νοημοσύνη ενσωματωμένη στις καθημερινές εφαρμογές, χωρίς ξεχωριστή απόφαση προμήθειας.</li>
+              <li>Μαθήματα αυτορρυθμού στο <em>Microsoft Learn</em> &mdash; τον δωρεάν διαδικτυακό ιστότοπο μάθησης της Microsoft &mdash; για όποιον θέλει να εμβαθύνει σε μια συγκεκριμένη δεξιότητα.</li>
+              <li>Λειτουργεί παράλληλα με τις επιχορηγήσεις λογισμικού, όχι αντί αυτών.</li>
+            </ol>
+            <p class="ms-words">Με τους όρους της Microsoft: <strong>DreamSpace</strong>, <strong>Changemakers</strong>, <strong>Microsoft for Nonprofits Community Training</strong>. <a href="#dreamspace">Λεπτομέρειες ↓</a></p>
+          </article>
+
+        </div>
+
+        <p class="note"><strong>Η κορυφαία γραμμή για έναν σύλλογο αυτού του μεγέθους.</strong>Με περίπου 40 ενεργά μέλη και επιτροπή μόνο εθελοντών, όλα όσα περιγράφονται παραπάνω είναι δωρεάν για το προβλέψιμο μέλλον. Τα επί πληρωμή επίπεδα έχουν σημασία μόνο όταν ο σύλλογος ξεπεράσει τη δωρεάν επιχορήγηση, και οι μικροί σύλλογοι δεν την ξεπερνούν για πολύ καιρό. Το υπόλοιπο της σελίδας είναι η λεπτομέρεια, με την ίδια σειρά &mdash; κλειστή από προεπιλογή.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Next Steps — comes right after Start Here
+         ============================================================ -->
+    <section class="band" id="next">
+      <div class="shell-wide">
+        <p class="eyebrow">Επόμενα Βήματα</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M4 4 H20 V20 H4 Z M7 7 H17 V17 H7 Z M10 10 H14 V14 H10 Z M12 12 V12.01" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          Επόμενα Βήματα
+        </h2>
+        <p>Τρεις φάσεις &mdash; <strong>Εγγραφή</strong>, <strong>Εγκατάσταση</strong>, <strong>Δόμηση</strong> &mdash; συν ένα παράλληλο ρεύμα <strong>εκπαίδευσης</strong> που ξεκινάει από την πρώτη μέρα και δεν σταματάει ποτέ.</p>
+
+        <div class="flow" aria-label="Ροή τριών φάσεων για στήσιμο μη κερδοσκοπικού οργανισμού">
+          <article class="step">
+            <h3><span class="num">1</span> Εγγραφή</h3>
+            <p>Αποφασίστε ποιος στην επιτροπή είναι υπεύθυνος για κάθε λογαριασμό και μετά κάντε αίτηση. Δύο ονοματισμένοι υπεύθυνοι: ένας για τον λογαριασμό Microsoft για μη κερδοσκοπικούς οργανισμούς και ένας για το Azure. Σημειώστε και τους δύο.</p>
+            <ul>
+              <li>Εγγραφή στην <a href="https://nonprofits.microsoft.com/" target="_blank" rel="noopener noreferrer">σελίδα Microsoft for Nonprofits</a> και ολοκλήρωση του ελέγχου επιλεξιμότητας.</li>
+              <li>Κλείστε μια δωρεάν συνάντηση 1:1 με τη Microsoft Philanthropies μέσω <a href="https://aka.ms/pg" target="_blank" rel="noopener noreferrer">aka.ms/pg</a>, <strong>ή</strong> μιλήστε με τον Philip το Σάββατο στο μάθημα.</li>
+            </ul>
+          </article>
+
+          <span class="flow-arrow a1" aria-hidden="true">
+            <svg viewBox="0 0 28 28"><path d="M3 14 H23 M17 8 L23 14 L17 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+
+          <article class="step">
+            <h3><span class="num">2</span> Εγκατάσταση</h3>
+            <p>Μόλις γίνει η επαλήθευση, βάλτε τα θεμέλια πριν αρχίσει κανείς να χτίζει.</p>
+            <ul>
+              <li>Δημιουργήστε το <em>tenant</em> Microsoft 365 του συλλόγου &mdash; τον δικό του ιδιωτικό χώρο μέσα στο cloud της Microsoft &mdash; μέσω του <a href="https://admin.microsoft.com/" target="_blank" rel="noopener noreferrer">κέντρου διαχείρισης</a>, και δώστε άδειες Business Basic στην επιτροπή.</li>
+              <li>Δημιουργήστε τον <a href="https://portal.azure.com/" target="_blank" rel="noopener noreferrer">λογαριασμό Azure</a> και εφαρμόστε την πίστωση $2.000 για μη κερδοσκοπικούς οργανισμούς.</li>
+              <li>Ρυθμίστε το <a href="https://entra.microsoft.com/" target="_blank" rel="noopener noreferrer">Entra ID</a> &mdash; το εργαλείο της Microsoft για τη διαχείριση του ποιος συνδέεται και σε τι έχει πρόσβαση &mdash; με ονοματισμένους λογαριασμούς διαχειριστή και έναν εφεδρικό λογαριασμό διαχειριστή κλειδωμένο σε περίπτωση που χαθεί ο κύριος (ονομάζεται λογαριασμός <em>break-glass</em>).</li>
+              <li>Διεκδικήστε το όφελος <a href="https://github.com/solutions/industry/nonprofits" target="_blank" rel="noopener noreferrer">GitHub for Nonprofits</a> και δημιουργήστε τον οργανισμό GitHub του συλλόγου.</li>
+            </ul>
+          </article>
+
+          <span class="flow-arrow a2" aria-hidden="true">
+            <svg viewBox="0 0 28 28"><path d="M3 14 H23 M17 8 L23 14 L17 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+
+          <article class="step">
+            <h3><span class="num">3</span> Δόμηση</h3>
+            <p>Ξεκινήστε μικρά. Μια δουλειά κάθε φορά. Δείξτε αξία πριν την κλιμάκωση.</p>
+            <ul>
+              <li>Διαλέξτε μία επαναλαμβανόμενη εργασία (π.χ. επιβεβαιώσεις εισιτηρίων εκδηλώσεων) και αυτοματοποιήστε την στο <a href="https://make.powerautomate.com/" target="_blank" rel="noopener noreferrer">Power Automate</a>.</li>
+              <li>Μεταφέρετε την ιστοσελίδα και άλλα μικρά έργα στο Azure, κάτω από την πίστωση των $2.000.</li>
+              <li>Καταχωρείτε κάθε αλλαγή στο GitHub από την πρώτη μέρα &mdash; ώστε οποιοδήποτε μέλος της επιτροπής να μπορεί να συνεχίσει εκεί που σταμάτησε ένα άλλο.</li>
+              <li>Επαναλαμβάνετε. Μετράτε. Πληρώνετε για αναβάθμιση μόνο όταν ένας συγκεκριμένος περιορισμός μπλοκάρει μια συγκεκριμένη δουλειά.</li>
+            </ul>
+          </article>
+        </div>
+
+        <aside class="flow-parallel" aria-label="Παράλληλο ρεύμα εκπαίδευσης">
+          <div>
+            <p class="label">Παράλληλα με όλα τα άλλα &mdash; από την πρώτη μέρα</p>
+            <h3>Συνεχίστε να μαθαίνετε</h3>
+            <p>Τρέξτε το ρεύμα εκπαίδευσης παράλληλα με Εγγραφή / Εγκατάσταση / Δόμηση. Είναι δωρεάν, είναι συνεχές, και τα μέλη της επιτροπής γίνονται καλύτερα όσο περισσότερο χρησιμοποιούν τα εργαλεία.</p>
+            <ul>
+              <li><a href="https://dreamspace.microsoft.com/" target="_blank" rel="noopener noreferrer">DreamSpace</a> &mdash; δωρεάν συνεδρίες STEM, τεχνητής νοημοσύνης και ψηφιακών δεξιοτήτων για μαθητές, δασκάλους και κοινοτικές ομάδες. Το <a href="https://fcl.eun.org/dreamspace" target="_blank" rel="noopener noreferrer">DreamSpace Dublin</a> φιλοξενεί δια ζώσης συνεδρίες· τα διαδικτυακά προγράμματα τρέχουν όλο τον χρόνο.</li>
+              <li><a href="https://www.microsoft.com/en-us/nonprofits/community-training" target="_blank" rel="noopener noreferrer">Microsoft Community Training</a> και ο ευρύτερος <a href="https://www.microsoft.com/en-us/nonprofits/skilling" target="_blank" rel="noopener noreferrer">κόμβος εκπαίδευσης για μη κερδοσκοπικούς οργανισμούς</a> &mdash; από το Δουβλίνο ή διαδικτυακά.</li>
+              <li>Προγράμματα <a href="https://www.microsoft.com/en-us/corporate-responsibility/skills-employability/changemakers" target="_blank" rel="noopener noreferrer">Microsoft Changemakers / Change Agent</a> &mdash; προγράμματα ψηφιακών δεξιοτήτων ευθυγραμμισμένα με φιλανθρωπικούς οργανισμούς.</li>
+              <li>Δωρεάν μονοπάτια Microsoft Learn στα <a href="https://learn.microsoft.com/en-us/training/paths/get-started-ai-fundamentals/" target="_blank" rel="noopener noreferrer">βασικά της τεχνητής νοημοσύνης</a> και στο <a href="https://learn.microsoft.com/en-us/training/powerplatform/" target="_blank" rel="noopener noreferrer">Power Platform</a>.</li>
+            </ul>
+          </div>
+          <figure class="skill-image">
+            <img id="skill-img" src="images/skilling.v1.jpg" alt="Αρχαία ελληνική αγγειογραφία μελανόμορφου ρυθμού που απεικονίζει μορφές γύρω από έναν στυλιζαρισμένο διδακτικό βωμό, με μία μορφή να κρατάει μια συσκευή ταμπλέτας." loading="lazy" decoding="async">
+          </figure>
+        </aside>
+
+        <p class="note" style="margin-top:var(--s-6)"><strong>Ένας κανόνας για όλο το ταξίδι.</strong>Πάρτε πρώτα κάθε δωρεάν πράγμα. Πληρώστε για αναβάθμιση μόνο όταν ένας συγκεκριμένος περιορισμός μπλοκάρει μια συγκεκριμένη δουλειά. Σημειώστε το έναυσμα κάθε φορά που αναβαθμίζετε &mdash; τα μελλοντικά μέλη της επιτροπής θα πρέπει να δικαιολογήσουν το κόστος.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Details — all sections collapsed by default
+         ============================================================ -->
+    <section class="band" id="details">
+      <div class="shell">
+        <p class="eyebrow">Λεπτομέρειες</p>
+        <h2>Περισσότερες λεπτομέρειες, μόνο αν τις θέλετε.</h2>
+        <p>Κάθε ενότητα παρακάτω είναι κλειστή. Ανοίξτε μόνο αυτές που χρειάζεστε.</p>
+      </div>
+      <div class="shell-wide detail-list">
+    <details class="detail-item" id="rule">
+      <summary>Ο κανόνας ανάγνωσης &mdash; πέντε ερωτήσεις για κάθε δωρεάν προσφορά</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">Ο κανόνας ανάγνωσης</p>
+        <h2>Διαβάστε κάθε προσφορά μέσα από πέντε ελέγχους.</h2>
+        <p>Πριν δεσμευτείτε σε οποιαδήποτε δωρεάν επιχορήγηση ή έκπτωση, περάστε από αυτές τις πέντε ερωτήσεις. Ο ίδιος φακός εφαρμόζεται σε κάθε προϊόν αυτής της σελίδας.</p>
+        <ol>
+          <li><strong>Τι είναι δωρεάν;</strong> — το πραγματικό προϊόν, επιχορήγηση, πίστωση, άδεια ή πρόγραμμα που προσφέρεται.</li>
+          <li><strong>Τι περιλαμβάνεται;</strong> — όρια χρηστών, πιστώσεις, άδειες, λεπτά αυτοματισμού, αποθηκευτικός χώρος, λειτουργίες.</li>
+          <li><strong>Τι <em>δεν</em> περιλαμβάνεται;</strong> — οι λειτουργίες που λείπουν πριν υποθέσετε ότι η δωρεάν προσφορά τις καλύπτει.</li>
+          <li><strong>Τι προσθέτει η αναβάθμιση;</strong> — η επί πληρωμή εναλλακτική, υπολογισμένη ετησίως όταν η τιμολόγηση είναι μηνιαία.</li>
+          <li><strong>Ποιο είναι το έναυσμα για αναβάθμιση;</strong> — η συγκεκριμένη στιγμή που το δωρεάν επίπεδο σταματάει να επαρκεί.</li>
+        </ol>
+        <p class="note"><strong>Γιατί αυτό έχει σημασία</strong>Τα περισσότερα λάθη προμηθειών προέρχονται από το να παραλείπεται ένας από αυτούς τους ελέγχους. Περάστε και από τους πέντε, με τη σειρά, κάθε φορά.</p>
+
+        <figure class="hero">
+          <img src="images/reader.v1.jpg" alt="Αττική αγγειογραφία μελανόμορφου ρυθμού σε ζεστό κρεμώδες κεραμικό φόντο: ένας φιλόσοφος με χιτώνα διαβάζει από μια συσκευή ταμπλέτας, με ένα στυλιζαρισμένο σύννεφο από πάνω και στοιβαγμένες μορφές διακομιστών δίπλα, σε πλαίσιο με ελληνικό μαίανδρο." loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="snapshot">
+      <summary>Με μια ματιά &mdash; όλες οι προσφορές σε έναν πίνακα</summary>
+      <div class="detail-body">
+      <div class="shell-wide">
+        <p class="eyebrow">Με μια ματιά</p>
+        <h2>Όλες οι προσφορές, σε μία οθόνη.</h2>
+        <p>Κάθε γραμμή είναι ένα προϊόν. Οι στήλες είναι οι πέντε ερωτήσεις του κανόνα ανάγνωσης.</p>
+
+        <div class="table-wrap">
+        <table class="compare">
+          <caption>Δωρεάν vs επί πληρωμή, δίπλα-δίπλα. Τιμές για μη κερδοσκοπικούς, χρέωση ετησίως.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Προϊόν</th>
+              <th scope="col">Δωρεάν επίπεδο</th>
+              <th scope="col">Κύριος περιορισμός</th>
+              <th scope="col">Πρώτο επί πληρωμή βήμα</th>
+              <th scope="col">Έναυσμα αναβάθμισης</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="#microsoft-365">Microsoft 365</a></th>
+              <td class="free">Business Basic, 300 χρήστες</td>
+              <td>Μόνο εφαρμογές web/κινητού</td>
+              <td class="cost">Business Standard $36/χρήστη/έτος</td>
+              <td>Ανάγκη για desktop Office ή εργασία χωρίς σύνδεση</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#azure">Azure</a></th>
+              <td class="free">πίστωση $2.000/έτος</td>
+              <td>Πίστωση ανά οργανισμό, όχι ανά χρήστη</td>
+              <td class="cost">Pay-as-you-go μετά την πίστωση</td>
+              <td>Εξάντληση πίστωσης ή κλιμάκωση</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#power-automate">Power Automate</a></th>
+              <td class="free">Standard connectors μέσω M365</td>
+              <td>Χωρίς premium / custom / Dataverse</td>
+              <td class="cost">Premium $180/χρήστη/έτος</td>
+              <td>Ανάγκη για premium connectors, RPA, AI Builder</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#windows">Windows 11 Pro</a></th>
+              <td class="free">Έως 50 άδειες μέσω TechSoup</td>
+              <td>Ανώτατο όριο 50</td>
+              <td class="cost">Έκπτωση ανά επιπλέον άδεια</td>
+              <td>Στόλος μεγαλύτερος των 50 συσκευών</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#github">GitHub</a></th>
+              <td class="free">GitHub Team, απεριόριστοι χρήστες</td>
+              <td>3.000 λεπτά CI/CD/μήνα· χωρίς SSO</td>
+              <td class="cost">Enterprise Cloud, 25% έκπτωση</td>
+              <td>Ανάγκη για SAML SSO, audit, data residency</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#copilot">GitHub Copilot</a></th>
+              <td class="free">Copilot Free — μόνο ατομικά</td>
+              <td>2.000 συμπληρώσεις, 50 chats/μήνα</td>
+              <td class="cost">Business $228/χρήστη/έτος</td>
+              <td>Τεχνητή νοημοσύνη κωδικοποίησης σε όλο τον οργανισμό</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p class="note"><strong>Μία προσφορά δεν είναι σε αυτόν τον πίνακα: <a href="#dreamspace">DreamSpace</a>.</strong> Το DreamSpace είναι ένα δωρεάν <em>εκπαιδευτικό πρόγραμμα</em> της Microsoft — δεν είναι άδεια λογισμικού, δεν είναι πίστωση Azure, και δεν είναι pay-as-you-go. Δεν έχει άξονα «δωρεάν vs επί πληρωμή» για σύγκριση. Αντιμετωπίστε το ως παράλληλο ρεύμα που μπορείτε να τρέξετε <em>δίπλα</em> σε οποιοδήποτε από τα παραπάνω προϊόντα· δείτε την <a href="#dreamspace">ενότητα DreamSpace</a> παρακάτω.</p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="microsoft-365">
+      <summary>1 &middot; Email, έγγραφα και συναντήσεις &mdash; Microsoft 365</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">1 · Παραγωγικότητα</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M6 4h12v16H6zM6 4 Q6 6 8 6h10M8 9h8M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Microsoft 365
+        </h2>
+        <p>Η δωρεάν επιχορήγηση Microsoft 365 για μη κερδοσκοπικούς οργανισμούς είναι το <strong>Business Basic, έως 300 χρήστες</strong>. Καλύπτει email, Teams, Office σε πρόγραμμα περιήγησης και κινητό, και 1&nbsp;TB OneDrive ανά χρήστη. Οτιδήποτε desktop, προηγμένη ασφάλεια ή πλήρες Copilot είναι επί πληρωμή αναβάθμιση.</p>
+
+        <p><span class="pill">Δωρεάν</span> &nbsp;Microsoft 365 Business Basic — μόνο web και κινητό, Outlook, Teams, Word, Excel, PowerPoint, OneNote, Exchange, OneDrive, SharePoint, 1&nbsp;TB/χρήστη, Copilot <em>Chat</em> περιλαμβάνεται.</p>
+
+        <p><strong>Ιδανικό για:</strong> email, συναντήσεις, εργασία Office στο πρόγραμμα περιήγησης, βασική κοινή χρήση αρχείων και συνεργασία.</p>
+
+        <details>
+          <summary>Τι δεν περιλαμβάνεται στη δωρεάν επιχορήγηση Business Basic</summary>
+          <div class="details-body">
+            <p><strong>Οι desktop εφαρμογές Office δεν αποτελούν μέρος της δωρεάν επιχορήγησης.</strong> Οι χρήστες δουλεύουν κυρίως μέσω εφαρμογών προγράμματος περιήγησης και κινητού. Δεν υπάρχει εγκατεστημένο Word, Excel, PowerPoint ή Outlook στο desktop.</p>
+
+            <details class="cost">
+              <summary>Business Standard — $36 / χρήστη / έτος (προσθέτει desktop εφαρμογές)</summary>
+              <div class="details-body">
+                <p>Τιμή για μη κερδοσκοπικούς, χρέωση ετησίως. Προκύπτει από $3/χρήστη/μήνα × 12. Προσθέτει εγκατεστημένο desktop Office, χρήση χωρίς σύνδεση και μια πλουσιότερη εμπειρία παραγωγικότητας σε desktop — χωρίς το πλήρες πακέτο ασφάλειας και διαχείρισης συσκευών του Business Premium.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> το προσωπικό χρειάζεται εγκατεστημένο Office ή εργασία χωρίς σύνδεση.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>Business Premium — $66 / χρήστη / έτος (προσθέτει ασφάλεια &amp; διαχείριση συσκευών)</summary>
+              <div class="details-body">
+                <p>Τιμή για μη κερδοσκοπικούς, χρέωση ετησίως. Προκύπτει από $5,50/χρήστη/μήνα × 12. Προσθέτει desktop Office, Entra ID, Intune, Defender, Purview, προηγμένη διαχείριση ταυτότητας και πρόσβασης, προστασία από απειλές, ανίχνευση ευαίσθητων δεδομένων και δυνατότητες επιχειρηματικής/ασφάλειας του Windows 11.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> ευαίσθητα δεδομένα, κανονιστική συμμόρφωση, BYOD/MDM ή ισχυρότεροι έλεγχοι ταυτότητας.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>Πρόσθετο Microsoft 365 Copilot — $306 / χρήστη / έτος</summary>
+              <div class="details-body">
+                <p>Πλήρες Microsoft 365 Copilot ως επί πληρωμή πρόσθετο. Προκύπτει από $25,50/χρήστη/μήνα × 12. Προσθέτει βαθύτερη ενσωμάτωση Copilot στις εφαρμογές Microsoft 365. (Το Copilot <em>Chat</em> περιλαμβάνεται ήδη στο Business Basic.)</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> οι χρήστες χρειάζονται το Copilot μέσα στις ροές εργασίας Word, Excel, PowerPoint, Outlook, Teams.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <p class="warn-callout"><strong>Προσοχή με παλαιότερες οδηγίες</strong>Μην υποθέσετε ότι παλιές δωρεάν επιχορηγήσεις για <strong>Business Premium</strong> ή <strong>Office 365 E1</strong> ισχύουν ακόμη. Η τρέχουσα κύρια δωρεάν προσφορά Microsoft 365 είναι το <strong>Business Basic, έως 300 χρήστες</strong>.</p>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-m365-pricing">Τιμολόγηση M365 για μη κερδοσκοπικούς</a> · <a href="#src-ms-offers">Προσφορές για μη κερδοσκοπικούς</a> · <a href="#src-m365-offers-learn">Microsoft Learn</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="azure">
+      <summary>2 &middot; Ο υπολογιστής στο cloud &mdash; Azure</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">2 · Cloud</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M6 16 Q3 16 3 13 Q3 10 6 10 Q7 6 11 6 Q15 6 16 10 Q21 10 21 13 Q21 16 18 16 Z M6 20 H18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Azure
+        </h2>
+        <p>Το Azure για μη κερδοσκοπικούς οργανισμούς είναι μια <strong>επιχορήγηση πίστωσης $2.000/έτος</strong> ανά οργανισμό. Είναι νομισματική πίστωση, όχι άδεια ανά χρήστη και όχι απεριόριστη υπολογιστική ισχύς. Μόλις εξαντληθεί η πίστωση, η χρήση συνεχίζεται με τις στάνταρ τιμές pay-as-you-go.</p>
+
+        <p><span class="pill">Δωρεάν</span> &nbsp;πίστωση Azure $2.000/έτος — αξιοποιήσιμη για φιλοξενία, VMs, βάσεις δεδομένων, αναλυτικά, αποθηκευτικό χώρο, φόρτους εργασίας AI/cloud.</p>
+
+        <p><strong>Ιδανικό για:</strong> μια μικρή ιστοσελίδα, δύο VMs, μια βάση δεδομένων, ελαφριά αναλυτικά ή μια ελεγχόμενη δοκιμή ενός φόρτου εργασίας AI.</p>
+
+        <details>
+          <summary>Τι δεν περιλαμβάνεται στη δωρεάν επιχορήγηση Azure</summary>
+          <div class="details-body">
+            <p><strong>Δεν είναι απεριόριστο Azure.</strong> Η χρήση πέρα από $2.000/έτος γίνεται κατανάλωση επί πληρωμή. Η επιχορήγηση είναι πίστωση, όχι ποσόστωση δωρεάν υπολογιστικής ισχύος, αποθηκευτικού χώρου ή χωρητικότητας AI.</p>
+            <p><strong>Δεν είναι προσφορά βασισμένη σε χρήστες.</strong> Δεν υπάρχει αντίστοιχο «δωρεάν για 300 χρήστες» στο Azure. Είναι μία και μοναδική νομισματική πίστωση ανά οργανισμό.</p>
+            <p><strong>Δεν είναι το ίδιο με τον γενικό δωρεάν λογαριασμό Azure.</strong> Η επιχορήγηση για μη κερδοσκοπικούς και ο τυπικός δωρεάν λογαριασμός της Microsoft είναι διαφορετικές προσφορές με διαφορετικούς όρους.</p>
+            <p><strong>Έναυσμα αναβάθμισης:</strong> εξάντληση πίστωσης, Ή ο φόρτος εργασίας είναι αρκετά μεγάλος ώστε τα $2.000/έτος να μην επαρκούν προφανώς και χρειάζεται πραγματική συζήτηση προϋπολογισμού.</p>
+          </div>
+        </details>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-azure-offers">Προσφορές Azure</a> · <a href="#src-azure-free">Δωρεάν λογαριασμός Azure</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="power-automate">
+      <summary>3 &middot; Αυτοματοποίηση επαναλαμβανόμενων εργασιών &mdash; Power Automate</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">3 · Αυτοματισμός</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M3 4h18v16H3z M3 4 H8 V9 H13 V14 H18 V19 M21 4 H16 V9 H11 V14 H6 V19" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          Power Automate
+        </h2>
+        <p>Το Power Automate περιλαμβάνεται σε περιορισμένη μορφή με κάθε άδεια Microsoft 365 — αλλά μόνο με <strong>standard connectors</strong>. Οτιδήποτε premium, custom, RPA, AI, Dataverse ή unattended απαιτεί επί πληρωμή αδειοδότηση.</p>
+
+        <p><span class="pill">Περιλαμβάνεται</span> &nbsp;Βασικές ροές εργασίας Microsoft 365 με τη χρήση standard connectors (Outlook, SharePoint, Teams, OneDrive, Forms, Lists).</p>
+
+        <p><strong>Ιδανικό για:</strong> «όταν υποβάλλεται μια φόρμα, αποστολή email»· «όταν δημιουργείται ένα στοιχείο SharePoint, ειδοποίηση στο Teams»· ροές εγκρίσεων· αυτοματισμούς παραγωγικότητας Outlook/SharePoint/Teams.</p>
+
+        <details>
+          <summary>Τι δεν περιλαμβάνεται στη βασική χρήση Microsoft 365</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Premium connectors</strong> — Salesforce, SAP, ServiceNow, πολλές βάσεις δεδομένων, Azure premium connectors, ενσωματώσεις HTTP/custom API.</li>
+              <li><strong>Custom connectors</strong> — οτιδήποτε τυλίγει το δικό σας API.</li>
+              <li><strong>Dataverse</strong> — πέρα από τα πολύ περιορισμένα προαπαιτούμενα δικαιώματα.</li>
+              <li><strong>AI Builder</strong> — επεξεργασία εγγράφων, πρόβλεψη, ταξινόμηση κειμένου, ανίχνευση αντικειμένων.</li>
+              <li><strong>Πλήρες RPA / αυτοματισμό desktop</strong> για κρίσιμη επιχειρηματική χρήση· ιδίως unattended automation.</li>
+              <li><strong>Process και task mining.</strong></li>
+            </ul>
+
+            <details class="cost">
+              <summary>Power Automate Premium — $180 / χρήστη / έτος</summary>
+              <div class="details-body">
+                <p>Χρέωση ετησίως. $15/χρήστη/μήνα × 12. Προσθέτει premium connectors, custom connectors, ροές cloud πέρα από βασικά σενάρια M365, attended desktop flows/RPA, process &amp; task mining, χωρητικότητα AI Builder και δικαιώματα Dataverse.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> οποιαδήποτε ροή χρειάζεται σύστημα μη Microsoft ή premium connector.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>Power Automate Process — $1.800 / bot / έτος</summary>
+              <div class="details-body">
+                <p>$150/bot/μήνα × 12. Προσθέτει unattended automation και βασική αυτοματοποίηση διαδικασιών που τρέχει χωρίς ένα ονομασμένο ανθρώπινο χρήστη να ενεργοποιεί κάθε βήμα.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> ροές εργασίας back-office που πρέπει να τρέχουν τη νύχτα ή χωρίς attended χρήστη.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>Power Automate Hosted Process — $2.580 / bot / έτος</summary>
+              <div class="details-body">
+                <p>$215/bot/μήνα × 12. Ίδιο με το Process, αλλά η Microsoft φιλοξενεί τη χωρητικότητα της μηχανής. Καμία διαχείριση VM από την πλευρά σας.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> χρειάζεστε unattended automation αλλά δεν μπορείτε να διαχειριστείτε τη δική σας υποδομή VM.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <p class="note"><strong>Πρακτικός κανόνας</strong><strong>Δωρεάν / περιλαμβάνεται:</strong> βασικές ροές M365 με standard connectors. <strong>Απαιτείται επί πληρωμή:</strong> premium connectors, Dataverse, custom APIs, RPA, AI Builder, process mining, unattended automation ή οτιδήποτε σε επιχειρηματική κλίμακα.</p>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-pa-faq">FAQ αδειοδότησης</a> · <a href="#src-pa-types">Τύποι αδειών</a> · <a href="#src-pa-pricing">Τιμολόγηση</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="dreamspace">
+      <summary>4 &middot; Προγράμματα για νέους &mdash; DreamSpace</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">4 · Δεξιότητες</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M12 21 V11 M12 11 Q6 9 4 4 Q10 5 12 11 M12 11 Q18 9 20 4 Q14 5 12 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          DreamSpace
+        </h2>
+        <p>Το Microsoft DreamSpace είναι ένα <strong>δωρεάν πρόγραμμα STEM, AI και ψηφιακών δεξιοτήτων</strong> για μαθητές, εκπαιδευτικούς, σχολεία και κοινότητες. Δεν είναι επιχορήγηση άδειας Microsoft 365 και δεν είναι πίστωση Azure. Είναι μια ξεχωριστή, παράλληλη προσφορά που τρέχετε <em>δίπλα</em> στις άλλες.</p>
+
+        <p><span class="pill">Δωρεάν</span> &nbsp;DreamSpace TV, DreamSpace LIVE, Digital Academy, Teacher Academies, βιωματικές εμπειρίες STEM. Προγραμματισμός όλο τον χρόνο για σχολεία.</p>
+
+        <p><strong>Ιδανικό για:</strong> μη κερδοσκοπικούς οργανισμούς των οποίων η αποστολή περιλαμβάνει εκπαίδευση, νεολαία ή ψηφιακές δεξιότητες κοινότητας — και κάθε μη κερδοσκοπικό που θέλει το προσωπικό του να αναπτύξει δεξιότητες στην τεχνητή νοημοσύνη χωρίς συζήτηση προμηθειών.</p>
+
+        <details>
+          <summary>Τι <em>δεν</em> είναι το DreamSpace</summary>
+          <div class="details-body">
+            <ul>
+              <li>Δεν είναι επιχορήγηση άδειας Microsoft 365 Business Basic / Standard / Premium.</li>
+              <li>Δεν είναι η πίστωση Azure $2.000/έτος για μη κερδοσκοπικούς.</li>
+              <li>Δεν είναι Power Automate Premium, Process, Hosted Process, AI Builder ή premium connectors.</li>
+              <li>Δεν είναι αδειοδότηση GitHub Copilot ή Microsoft 365 Copilot.</li>
+              <li>Δεν υπάρχει όριο «δωρεάν για X χρήστες» — η πρόσβαση βασίζεται στο πρόγραμμα, όχι στην άδεια.</li>
+            </ul>
+          </div>
+        </details>
+
+        <p class="note"><strong>Πρακτικός κανόνας</strong>DreamSpace = δωρεάν πρόγραμμα εκπαίδευσης / δεξιοτήτων. DreamSpace ≠ λειτουργική επιχορήγηση άδειας IT. Πάντα να τρέχει <em>παράλληλα</em> με τις προσφορές αδειών.</p>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-dreamspace">DreamSpace</a> · <a href="#src-dreamspace-fcl">FCL Δουβλίνο</a> · <a href="#src-dreamspace-w5">W5 LIFE</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="windows">
+      <summary>5 &middot; Φορητοί υπολογιστές και άδειες Windows &mdash; Windows 11</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">5 · Συσκευές &amp; εκπαίδευση</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M2 8 H22 L12 3 Z M5 8 V18 M9 8 V18 M15 8 V18 M19 8 V18 M2 20 H22 M3 18 H21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Windows &amp; εκπαίδευση
+        </h2>
+        <p>Τα Windows 11 Pro διατίθενται ως επιχορήγηση <strong>έως 50 αδειών</strong> μέσω TechSoup, καθώς και με εκπτωτική τιμολόγηση για επιπλέον άδειες. Η Microsoft δημοσιεύει επίσης δωρεάν πόρους εκπαίδευσης και ανάπτυξης δεξιοτήτων εστιασμένους σε μη κερδοσκοπικούς.</p>
+
+        <p><span class="pill">Δωρεάν / επιχορήγηση</span> &nbsp;Έως 50 άδειες Windows 11 Pro μέσω TechSoup. Δωρεάν πόροι εκπαίδευσης AI και ψηφιακών δεξιοτήτων εστιασμένοι σε μη κερδοσκοπικούς.</p>
+
+        <details>
+          <summary>Τι <em>δεν</em> περιλαμβάνεται</summary>
+          <div class="details-body">
+            <p><strong>Η επιχορήγηση Windows έχει ανώτατο όριο 50 αδειών.</strong> Πέρα από 50, οι άδειες είναι εκπτωτικές αλλά επί πληρωμή.</p>
+            <p><strong>Οι πόροι εκπαίδευσης δεν είναι άδειες προϊόντος.</strong> Η δωρεάν εκπαίδευση δεν περιλαμβάνει αυτόματα επί πληρωμή πλάνα Microsoft 365, επιπλέον πίστωση Azure, Power Automate Premium, GitHub Copilot ή Microsoft 365 Copilot.</p>
+          </div>
+        </details>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-ms-offers">Προσφορές για μη κερδοσκοπικούς</a> · <a href="#src-nonprofit-products">Έγγραφα προϊόντων</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="github">
+      <summary>6 &middot; Πού ζει ο κώδικας της ιστοσελίδας &mdash; GitHub</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">6 · Έλεγχος κώδικα</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M7 4 V20 M7 8 Q7 12 12 12 H17 M17 8 V16 M7 16 H12 M7 4 a2 2 0 1 1 0.01 0 M17 6 a2 2 0 1 1 0.01 0 M17 18 a2 2 0 1 1 0.01 0 M12 14 a2 2 0 1 1 0.01 0" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          GitHub for Nonprofits
+        </h2>
+        <p>Οι επαληθευμένοι μη κερδοσκοπικοί λαμβάνουν <strong>GitHub Team δωρεάν</strong> ή <strong>25% έκπτωση στο GitHub Enterprise Cloud</strong>. Το Team δίνει απεριόριστους χρήστες και απεριόριστα ιδιωτικά αποθετήρια. Το Copilot <strong>δεν</strong> περιλαμβάνεται στην επιχορήγηση για μη κερδοσκοπικούς.</p>
+
+        <p><span class="pill">Δωρεάν</span> &nbsp;GitHub Team — απεριόριστα δημόσια &amp; ιδιωτικά αποθετήρια, απεριόριστοι χρήστες, προστατευμένα branches, code owners, draft PRs, Pages, Wikis, environments, 3.000 λεπτά CI/CD/μήνα (≈ 36.000/έτος), 2&nbsp;GB αποθηκευτικός χώρος Packages.</p>
+
+        <p><strong>Ιδανικό για:</strong> κάθε μη κερδοσκοπικό που κάνει κώδικα, infra-as-code, αυτοματισμό ή τεκμηρίωση σε έλεγχο εκδόσεων.</p>
+
+        <details>
+          <summary>Όρια και τι <em>δεν</em> περιλαμβάνεται</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Δεν είναι GitHub Enterprise Cloud.</strong> Το Enterprise προσθέτει data residency, Enterprise Managed Users, SCIM, SAML SSO, Audit Log API, προηγμένο audit, premium υποστήριξη, 50.000 λεπτά CI/CD/μήνα, 50&nbsp;GB Packages. Οι μη κερδοσκοπικοί λαμβάνουν <strong>25% έκπτωση</strong>, όχι δωρεάν.</li>
+              <li><strong>Δεν είναι απεριόριστο CI/CD ιδιωτικών αποθετηρίων.</strong> Περιλαμβάνονται 3.000 λεπτά/μήνα· η υπέρβαση χρεώνεται.</li>
+              <li><strong>Το Codespaces δεν είναι απεριόριστο.</strong> Το Team περιλαμβάνει <em>πρόσβαση</em>, αλλά η χρήση μετριέται. Τα πλάνα Org/Enterprise δεν περιλαμβάνουν τη δωρεάν ποσόστωση Codespaces του προσωπικού λογαριασμού.</li>
+              <li><strong>Δεν είναι GitHub Copilot.</strong> Το Copilot είναι ξεχωριστό προϊόν, δεν περιλαμβάνεται στη δωρεάν προσφορά Team για μη κερδοσκοπικούς.</li>
+            </ul>
+
+            <details class="cost">
+              <summary>GitHub Enterprise Cloud — 25% έκπτωση για μη κερδοσκοπικούς</summary>
+              <div class="details-body">
+                <p>Προσθέτει ελέγχους ασφαλείας, ελέγχους διαχείρισης, data residency, Enterprise Managed Users, SCIM, SAML SSO, Audit Log API, προηγμένο audit, GitHub Connect, premium υποστήριξη, μεγαλύτερη ποσόστωση Actions και μεγαλύτερο χώρο αποθήκευσης Packages.</p>
+                <p><strong>Έναυσμα αναβάθμισης:</strong> SSO απαιτούμενο από την πολιτική IT, ρυθμιζόμενα δεδομένα, audit/συμμόρφωση ή διακυβέρνηση όλου του οργανισμού.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-github-np">GitHub for Nonprofits</a> · <a href="#src-github-team">Έγγραφα Team</a> · <a href="#src-github-pricing">Τιμολόγηση</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="copilot">
+      <summary>7 &middot; Ο προαιρετικός βοηθός AI &mdash; GitHub Copilot</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">7 · AI κωδικοποίησης</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M12 4 V20 M8 6 Q3 9 4 14 M16 6 Q21 9 20 14 M9 11 a1 1 0 1 1 0.01 0 M15 11 a1 1 0 1 1 0.01 0 M9 16 Q12 18 15 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          GitHub Copilot
+        </h2>
+        <p><strong>Δεν υπάρχει δωρεάν επιχορήγηση Copilot σε επίπεδο οργανισμού</strong> στο πρόγραμμα GitHub for Nonprofits. Μεμονωμένοι developers μπορούν να χρησιμοποιήσουν το περιορισμένο επίπεδο <strong>Copilot Free</strong>. Από την 1η Ιουνίου 2026, το Copilot μεταβαίνει σε <strong>AI Credits βασισμένα στη χρήση</strong> πάνω από την τιμή του βασικού πλάνου.</p>
+
+        <p><span class="pill">Δωρεάν (ατομικά)</span> &nbsp;GitHub Copilot Free — 2.000 συμπληρώσεις κώδικα/μήνα και 50 αιτήματα chat / agent-mode/μήνα, ανά μεμονωμένο developer.</p>
+
+        <p><strong>Ιδανικό για:</strong> έναν μόνο developer που δοκιμάζει το Copilot πριν από τις προμήθειες.</p>
+
+        <details>
+          <summary>Όρια, τιμολόγηση και η αλλαγή χρέωσης του 2026</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Δεν είναι στην επιχορήγηση για μη κερδοσκοπικούς.</strong> Οι πηγές του GitHub for Nonprofits αναφέρουν δωρεάν Team ή 25% έκπτωση στο Enterprise Cloud. Δεν αναφέρουν Copilot.</li>
+              <li><strong>Το Copilot Free είναι ατομικό και περιορισμένο.</strong> Δεν αποτελεί υποκατάστατο για ένα οργανωσιακό πλάνο Copilot.</li>
+              <li><strong>Από την 1η Ιουνίου 2026, το Copilot μεταβαίνει σε AI Credits βασισμένα στη χρήση.</strong> Η τιμή του βασικού πλάνου δεν αλλάζει, αλλά η εντατική χρήση μπορεί να κοστίσει περισσότερο από τη σημερινή σταθερή συνδρομή.</li>
+            </ul>
+
+            <details class="cost">
+              <summary>Copilot Business — $228 / χρήστη / έτος</summary>
+              <div class="details-body">
+                <p>$19/χρήστη/μήνα × 12. Τιμή βασικού πλάνου· το GitHub αναφέρει ότι η βασική τιμή δεν αλλάζει καθώς το Copilot μεταβαίνει σε χρέωση βάσει χρήσης.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>Copilot Enterprise — $468 / χρήστη / έτος</summary>
+              <div class="details-body">
+                <p>$39/χρήστη/μήνα × 12. Τιμή βασικού πλάνου· το GitHub αναφέρει ότι η βασική τιμή δεν αλλάζει καθώς το Copilot μεταβαίνει σε χρέωση βάσει χρήσης.</p>
+              </div>
+            </details>
+
+            <details class="cost">
+              <summary>AI Credits βασισμένα στη χρήση (από την 1η Ιουνίου 2026)</summary>
+              <div class="details-body">
+                <p>Από την 1η Ιουνίου 2026, η χρήση Copilot θα καταναλώνει GitHub AI Credits. Η χρήση πέρα από τις περιλαμβανόμενες ποσοστώσεις μπορεί να απαιτεί πρόσθετη επί πληρωμή χρήση ανάλογα με το πλάνο και τις ρυθμίσεις διαχειριστή.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <p style="font-family:var(--font-sans);font-size:var(--t-step--1);color:var(--fore-mute)">Πηγές: <a href="#src-copilot-plans">Πλάνα Copilot</a> · <a href="#src-copilot-billing">Blog χρέωσης</a> · <a href="#src-copilot-docs">Έγγραφα Copilot</a></p>
+      </div>
+    </div>
+    </details>
+
+    <details class="detail-item" id="recommendation">
+      <summary>8 &middot; Τι προτείνω για σύλλογο αυτού του μεγέθους</summary>
+      <div class="detail-body">
+      <div class="shell">
+        <p class="eyebrow">8 · Σύσταση</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M12 3 V21 M5 8 H19 M5 8 L3 14 a3 3 0 0 0 6 0 Z M19 8 L17 14 a3 3 0 0 0 6 0 Z M8 21 H16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Μια πρακτική σύσταση
+        </h2>
+        <p>Αν ξεκινάτε από το μηδέν, πάρτε όλα τα δωρεάν πρώτα, παράλληλα — δεν παρεμβαίνουν το ένα στο άλλο.</p>
+
+        <p><strong>Ξεκινήστε δωρεάν:</strong></p>
+        <ul>
+          <li>Microsoft 365 Business Basic, έως 300 χρήστες.</li>
+          <li>Πίστωση Azure $2.000/έτος.</li>
+          <li>Power Automate με standard connectors Microsoft 365.</li>
+          <li>GitHub Team — αν κάνετε οποιονδήποτε κώδικα ή infra-as-code.</li>
+          <li>DreamSpace — αν η αποστολή σας αγγίζει την εκπαίδευση, τη νεολαία ή τις ψηφιακές δεξιότητες της κοινότητας.</li>
+          <li>Έως 50 άδειες Windows 11 Pro μέσω TechSoup.</li>
+        </ul>
+
+        <p><strong>Εναύσματα αναβάθμισης, με απλά λόγια:</strong></p>
+        <ul>
+          <li><strong>Ανάγκη για desktop Office ή εργασία χωρίς σύνδεση →</strong> M365 Business Standard, $36/χρήστη/έτος.</li>
+          <li><strong>Ανάγκη για ασφάλεια, ταυτότητα, MDM, συμμόρφωση →</strong> M365 Business Premium, $66/χρήστη/έτος.</li>
+          <li><strong>Ανάγκη για Copilot μέσα στις εφαρμογές Office →</strong> πρόσθετο M365 Copilot, $306/χρήστη/έτος.</li>
+          <li><strong>Ανάγκη για ροές premium / custom / Dataverse / AI Builder →</strong> Power Automate Premium, $180/χρήστη/έτος.</li>
+          <li><strong>Ανάγκη για unattended automation →</strong> Power Automate Process, $1.800/bot/έτος.</li>
+          <li><strong>Ανάγκη για SSO / audit / data residency στο GitHub →</strong> Enterprise Cloud με 25% έκπτωση.</li>
+          <li><strong>Ανάγκη για AI κωδικοποίησης σε όλο τον οργανισμό →</strong> Copilot Business ή Enterprise (όχι στην επιχορήγηση μη κερδοσκοπικών).</li>
+        </ul>
+      </div>
+    </div>
+    </details>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         12. Sources
+         ============================================================ -->
+    <section class="band tint sources" id="sources">
+      <div class="shell">
+        <p class="eyebrow">Μόνο δημόσιες πηγές</p>
+        <h2>
+          <svg class="iconlet" viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" style="vertical-align:-4px;margin-right:0.4rem">
+            <path d="M4 6 Q4 4 6 4 H18 Q20 4 20 6 V18 Q20 20 18 20 H6 Q4 20 4 18 V6 M8 8 H16 M8 12 H16 M8 16 H13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Βιβλιοθήκη πηγών
+        </h2>
+        <p>Κάθε ισχυρισμός σε αυτή τη σελίδα είναι ιχνηλατήσιμος σε έναν από τους παρακάτω δημόσιους συνδέσμους. Επανελέγξτε πριν τις προμήθειες, τον σχεδιασμό επιχορήγησης ή την εξωτερική δημοσίευση.</p>
+
+        <h3>Microsoft 365 / προσφορές για μη κερδοσκοπικούς</h3>
+        <ol>
+          <li><a id="src-m365-pricing" href="https://www.microsoft.com/en-us/microsoft-365/business/nonprofit-plans-and-pricing" target="_blank" rel="noopener noreferrer">Πλάνα και τιμολόγηση Microsoft 365 Business — Μη κερδοσκοπικοί</a></li>
+          <li><a id="src-ms-offers" href="https://www.microsoft.com/en-us/nonprofits/offers-for-nonprofits" target="_blank" rel="noopener noreferrer">Επιχορηγήσεις και εκπτώσεις τεχνολογίας και λογισμικού για μη κερδοσκοπικούς</a></li>
+          <li><a id="src-m365-offers-learn" href="https://learn.microsoft.com/en-us/industry/nonprofit/microsoft-for-nonprofits/m365-offers" target="_blank" rel="noopener noreferrer">Πρόσβαση στις προσφορές Microsoft 365 — Microsoft for Nonprofits</a></li>
+          <li><a id="src-nonprofit-products" href="https://learn.microsoft.com/en-us/industry/nonprofit/microsoft-for-nonprofits/nonprofit-offerings-products" target="_blank" rel="noopener noreferrer">Προσφορές και προϊόντα για μη κερδοσκοπικούς — Microsoft for Nonprofits</a></li>
+        </ol>
+
+        <h3>Azure</h3>
+        <ol>
+          <li><a id="src-azure-offers" href="https://azure.microsoft.com/en-us/pricing/offers" target="_blank" rel="noopener noreferrer">Προσφορές και πλεονεκτήματα Azure</a></li>
+          <li><a id="src-azure-free" href="https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account" target="_blank" rel="noopener noreferrer">Δημιουργήστε τον δωρεάν λογαριασμό Azure ή pay-as-you-go</a></li>
+        </ol>
+
+        <h3>Power Automate / Power Platform</h3>
+        <ol>
+          <li><a id="src-pa-faq" href="https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/faqs" target="_blank" rel="noopener noreferrer">FAQ αδειοδότησης Power Automate</a></li>
+          <li><a id="src-pa-types" href="https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/types" target="_blank" rel="noopener noreferrer">Τύποι αδειών Power Automate</a></li>
+          <li><a id="src-pa-pricing" href="https://www.microsoft.com/en-us/power-platform/products/power-automate/pricing" target="_blank" rel="noopener noreferrer">Τιμολόγηση Power Automate</a></li>
+        </ol>
+
+        <h3>DreamSpace</h3>
+        <ol>
+          <li><a id="src-dreamspace" href="https://dreamspace.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft DreamSpace</a></li>
+          <li><a id="src-dreamspace-fcl" href="https://fcl.eun.org/dreamspace" target="_blank" rel="noopener noreferrer">DreamSpace — Microsoft Ireland STEM Education Centre (Δουβλίνο)</a></li>
+          <li><a id="src-dreamspace-w5" href="https://w5online.co.uk/w5-life/life-programmes/dream-space" target="_blank" rel="noopener noreferrer">Dream Space στο W5 LIFE</a></li>
+        </ol>
+
+        <h3>GitHub</h3>
+        <ol>
+          <li><a id="src-github-np" href="https://github.com/solutions/industry/nonprofits" target="_blank" rel="noopener noreferrer">GitHub for Nonprofits</a></li>
+          <li><a id="src-github-team" href="https://docs.github.com/en/nonprofit/nonprofit-teams-plan/getting-started-with-the-github-team-plan-for-nonprofits" target="_blank" rel="noopener noreferrer">Ξεκινώντας με το πλάνο GitHub Team για μη κερδοσκοπικούς</a></li>
+          <li><a id="src-github-pricing" href="https://github.com/pricing" target="_blank" rel="noopener noreferrer">Τιμολόγηση GitHub</a></li>
+          <li><a id="src-github-actions" href="https://docs.github.com/en/billing/concepts/product-billing/github-actions" target="_blank" rel="noopener noreferrer">Χρέωση GitHub Actions</a></li>
+          <li><a id="src-github-codespaces" href="https://docs.github.com/en/billing/concepts/product-billing/github-codespaces" target="_blank" rel="noopener noreferrer">Χρέωση GitHub Codespaces</a></li>
+        </ol>
+
+        <h3>GitHub Copilot</h3>
+        <ol>
+          <li><a id="src-copilot-plans" href="https://github.com/features/copilot/plans" target="_blank" rel="noopener noreferrer">Πλάνα και τιμολόγηση GitHub Copilot</a></li>
+          <li><a id="src-copilot-billing" href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/" target="_blank" rel="noopener noreferrer">Το GitHub Copilot μεταβαίνει σε χρέωση βάσει χρήσης</a></li>
+          <li><a id="src-copilot-docs" href="https://docs.github.com/en/copilot/get-started/plans" target="_blank" rel="noopener noreferrer">Πλάνα για το GitHub Copilot — GitHub Docs</a></li>
+        </ol>
+
+        <a class="top-link" href="#top">↑ Επιστροφή στην κορυφή</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="shell">
+      <p>Συγκεντρώθηκε από δημόσιες σελίδες της Microsoft και του GitHub, με σύνδεσμο στην ενότητα Πηγών. Οι τιμές και οι λεπτομέρειες του προγράμματος πρέπει να επανελεγχθούν πριν τις προμήθειες ή τον σχεδιασμό επιχορήγησης.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal, progressive-enhancement only. The page works without JS.
+    (function () {
+      // 1. Active-section indicator on the sticky TOC.
+      var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var sections = links.map(function (a) {
+        return document.getElementById(a.getAttribute('href').slice(1));
+      }).filter(Boolean);
+
+      if ('IntersectionObserver' in window && sections.length) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var link = byId[e.target.id];
+            if (!link) return;
+            if (e.isIntersecting) {
+              links.forEach(function (a) { a.removeAttribute('aria-current'); });
+              link.setAttribute('aria-current', 'true');
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+        sections.forEach(function (s) { io.observe(s); });
+      }
+    }());
+  </script>
+</body>
+</html>

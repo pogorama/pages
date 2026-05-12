@@ -239,10 +239,25 @@ _RETRYABLE_STATUS = {408, 425, 429, 500, 502, 503, 504}
 
 # Default backoff schedule when Retry-After is not supplied.
 # Image RPM at Tier 1 is ~9 RPM (gpt-image-2 GlobalStandard) — ~7s/req.
-# Use 8s base, doubling, capped at 90s, plus jitter.
+# Use 8s base, doubling, capped at 60s, plus jitter.
+# Reference: https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
 _BACKOFF_BASE_SECONDS = 8.0
-_BACKOFF_CAP_SECONDS = 90.0
-_DEFAULT_MAX_ATTEMPTS = 6
+_BACKOFF_CAP_SECONDS = 60.0
+_DEFAULT_MAX_ATTEMPTS = 4
+
+# Hard upper bound on --max-attempts. Anything higher is rejected at the
+# CLI. Retrying 40 times against an "EngineOverloaded" or "503" backend
+# does not fix the underlying problem; it just wastes wall time and
+# hides the real Azure error from the operator.
+_HARD_MAX_ATTEMPTS = 6
+
+# Total wall-time budget for one image generation call, including all
+# retry sleeps. If the budget is exhausted, the script aborts with the
+# most recent Azure response body so the operator can act on the real
+# error (engine overload, bad prompt, expired key, quota exceeded, …).
+# User requirement: "image creation should not take longer than 3
+# minutes, never. if so then there is an error."
+_TOTAL_DEADLINE_SECONDS = 180.0
 
 
 def http_post(
@@ -253,17 +268,31 @@ def http_post(
     multipart: tuple[dict[str, str], list[tuple[str, Path]]] | None = None,
     timeout: int = DEFAULT_TIMEOUT_SECONDS,
     max_attempts: int = _DEFAULT_MAX_ATTEMPTS,
+    total_deadline_seconds: float = _TOTAL_DEADLINE_SECONDS,
 ) -> dict[str, Any]:
     """POST JSON or multipart/form-data via the stdlib, return parsed JSON.
 
     Retries automatically on transient errors (HTTP 408/425/429/5xx and
     connection/timeout errors). When the server provides a Retry-After
     header it is respected. Otherwise an exponential backoff with jitter
-    is used. See Azure OpenAI quotas-and-limits and Microsoft Learn
+    is used, capped at ``_BACKOFF_CAP_SECONDS``.
+
+    Hard limits:
+      - ``max_attempts`` is capped at ``_HARD_MAX_ATTEMPTS``.
+      - Total wall time (request + every sleep) is capped at
+        ``total_deadline_seconds``. If the next planned sleep would
+        exceed the budget, the script aborts immediately and surfaces
+        the most recent Azure response body so the operator can act on
+        the real error.
+
+    See Azure OpenAI quotas-and-limits docs and Microsoft Learn
     "Error codes" reference.
     """
     if (json_body is None) == (multipart is None):
         raise ValueError("Provide exactly one of json_body or multipart.")
+
+    # Clamp max_attempts defensively even though argparse also clamps.
+    max_attempts = max(1, min(max_attempts, _HARD_MAX_ATTEMPTS))
 
     base_headers = {
         "api-key": api_key,
@@ -284,7 +313,33 @@ def http_post(
     # future per-attempt re-encoding if file streams ever become consumable).
     del encoded_multipart_args
 
+    started_at = time.monotonic()
+    deadline_at = started_at + total_deadline_seconds
+
     last_error_detail: str | None = None
+    last_status: int | None = None
+    last_reason: str | None = None
+
+    def _abort_with_azure_error(reason_prefix: str) -> "SystemExit":
+        elapsed = time.monotonic() - started_at
+        status_part = (
+            f"{last_status} {last_reason}" if last_status is not None
+            else "no HTTP status (connection error)"
+        )
+        return SystemExit(
+            f"{reason_prefix} after {elapsed:.0f}s. "
+            f"Last Azure response: {status_part}\n"
+            f"Body:\n{last_error_detail or '(no body captured)'}\n"
+            f"\nThis is a real upstream error, not a retry-budget bug. "
+            f"Investigate the body above before re-running. Common causes:\n"
+            f"  - EngineOverloaded / 503: Azure capacity throttling; "
+            f"try again in a few minutes or switch deployment region.\n"
+            f"  - 429: subscription quota exceeded; check quotas in the "
+            f"Azure portal.\n"
+            f"  - 400: prompt rejected (content filter, size, schema).\n"
+            f"  - 401/403: APIM subscription key invalid or revoked."
+        )
+
     for attempt in range(1, max_attempts + 1):
         headers = dict(base_headers)
         headers["Content-Type"] = body_content_type
@@ -303,6 +358,8 @@ def http_post(
         except urllib.error.HTTPError as error:
             detail = error.read().decode("utf-8", errors="replace")
             last_error_detail = detail
+            last_status = error.code
+            last_reason = error.reason
             status = error.code
             if status not in _RETRYABLE_STATUS or attempt == max_attempts:
                 raise SystemExit(
@@ -320,9 +377,22 @@ def http_post(
                     _BACKOFF_BASE_SECONDS * (2 ** (attempt - 1)),
                 )
                 wait_seconds *= 0.5 + random.random() * 0.5
+            else:
+                # Always cap server-suggested waits at the backoff ceiling.
+                wait_seconds = min(wait_seconds, _BACKOFF_CAP_SECONDS)
+
+            remaining = deadline_at - time.monotonic()
+            if wait_seconds >= remaining or remaining < 1.0:
+                raise _abort_with_azure_error(
+                    f"Aborting: Azure-suggested wait ({wait_seconds:.0f}s) "
+                    f"exceeds remaining budget ({max(0.0, remaining):.0f}s) "
+                    f"after {attempt} attempt(s)"
+                )
+
             print(
                 f"[retry {attempt}/{max_attempts - 1}] APIM returned {status} "
-                f"{error.reason}; sleeping {wait_seconds:.1f}s before retry. "
+                f"{error.reason}; sleeping {wait_seconds:.1f}s before retry "
+                f"(deadline in {remaining:.0f}s). "
                 f"(detail: {detail[:160]}...)",
                 file=sys.stderr,
                 flush=True,
@@ -331,24 +401,35 @@ def http_post(
             continue
         except urllib.error.URLError as error:
             last_error_detail = str(error)
+            last_status = None
+            last_reason = None
             if attempt == max_attempts:
                 raise SystemExit(f"APIM call failed: {error}") from error
             wait_seconds = min(
                 _BACKOFF_CAP_SECONDS,
                 _BACKOFF_BASE_SECONDS * (2 ** (attempt - 1)),
             ) * (0.5 + random.random() * 0.5)
+
+            remaining = deadline_at - time.monotonic()
+            if wait_seconds >= remaining or remaining < 1.0:
+                raise _abort_with_azure_error(
+                    f"Aborting: backoff sleep ({wait_seconds:.0f}s) exceeds "
+                    f"remaining budget ({max(0.0, remaining):.0f}s) "
+                    f"after {attempt} attempt(s)"
+                )
+
             print(
                 f"[retry {attempt}/{max_attempts - 1}] Connection error "
-                f"({error}); sleeping {wait_seconds:.1f}s before retry.",
+                f"({error}); sleeping {wait_seconds:.1f}s before retry "
+                f"(deadline in {remaining:.0f}s).",
                 file=sys.stderr,
                 flush=True,
             )
             time.sleep(wait_seconds)
             continue
 
-    # Safety net — should be unreachable.
-    raise SystemExit(
-        f"APIM call failed after {max_attempts} attempts: {last_error_detail}"
+    raise _abort_with_azure_error(
+        f"APIM call exhausted {max_attempts} attempt(s)"
     )
 
 
@@ -495,7 +576,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "(429 / 5xx / connection errors). The script respects "
             "Retry-After if present, otherwise uses exponential backoff "
             f"with jitter (base {int(_BACKOFF_BASE_SECONDS)}s, "
-            f"cap {int(_BACKOFF_CAP_SECONDS)}s)."
+            f"cap {int(_BACKOFF_CAP_SECONDS)}s). "
+            f"Hard upper bound: {_HARD_MAX_ATTEMPTS}. "
+            f"Total wall time is also capped at "
+            f"{int(_TOTAL_DEADLINE_SECONDS)}s — if Azure keeps returning "
+            "429/5xx the script will abort with the real upstream error "
+            "instead of retrying forever."
         ),
     )
     parser.add_argument(
@@ -507,6 +593,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     args = parser.parse_args(argv)
     if not 1 <= args.count <= 10:
         parser.error("--count must be between 1 and 10.")
+    if args.max_attempts < 1:
+        parser.error("--max-attempts must be at least 1.")
+    if args.max_attempts > _HARD_MAX_ATTEMPTS:
+        parser.error(
+            f"--max-attempts may not exceed {_HARD_MAX_ATTEMPTS}. "
+            f"Retrying more than that against an overloaded Azure endpoint "
+            f"hides the real error instead of fixing anything. If you keep "
+            f"hitting transient failures, investigate the Azure-side cause "
+            f"(quota, region capacity, deployment SKU)."
+        )
     if args.output_compression is not None and not 0 <= args.output_compression <= 100:
         parser.error("--output-compression must be between 0 and 100.")
     if args.edit_image and not Path(args.edit_image).is_file():

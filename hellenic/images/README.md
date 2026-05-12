@@ -23,7 +23,8 @@ generation creates `<slot>.v2.<ext>` and the legacy file is treated as
 
 | Slot     | Live file            | Date generated | Used as     |
 |----------|----------------------|----------------|-------------|
-| hero     | `hero.v1.jpg`        | 2026-05-11     | masthead    |
+| hero     | `hero.v2.jpg`        | 2026-05-12     | masthead — female teacher with children, alphabet tablet, cloud + Windows logo motifs |
+| reader   | `reader.v1.jpg`      | 2026-05-11     | Reading Rule details body — philosopher reading from a tablet (renamed from `hero.v1.jpg`) |
 | skilling | `skilling.v1.jpg`    | 2026-05-12     | Next Steps · parallel skilling band |
 
 ## Workflow
