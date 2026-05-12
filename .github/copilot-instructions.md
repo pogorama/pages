@@ -1,0 +1,106 @@
+# Copilot instructions for `pogorama_pages`
+
+This repo holds personal, HTML-first websites built to one style guide.
+Read this before touching any page — especially when you are about to
+"design" or "redesign" something.
+
+## What this repo is
+
+- `docs/web-design-manifesto.md` — the **what**: ten chapters, fifty rules,
+  HTML-first, single column, calm type, one accent, generous space.
+- `docs/design_qna.md` — the **how**: 66 questions on information design,
+  each with three options and a recommended default.
+- `docs/azure-apim-image-generation.md` — how the
+  `scripts/generate_image_apim.py` script talks to the Azure APIM gateway
+  to generate or edit images.
+- `hellenic/` — first applied project: a plain-English guide to Microsoft
+  for Nonprofits, written for a small Greek-Irish community society.
+
+## Mandatory pre-flight, before writing any HTML
+
+Run this in your head — or out loud in the chat — **before** you start
+designing or rewriting a page. These four questions match Q1, Q2, Q15
+and Q56 of the Q&A. They are not optional.
+
+1. **Who is going to read this page?** Write the named reader in your
+   notes. _("A volunteer treasurer of a 40-person society in Dublin, no
+   IT background.")_ — Q1.
+2. **What is their job-to-be-done?** One sentence: _"Someone like {A}
+   visits this page to {B} so they can {C}."_ — Q2.
+3. **What does the reader already know?** List every proper noun and
+   acronym you plan to use (Azure, GitHub, Copilot, RPA, SSO, Dataverse
+   …). For each, decide: do they already know it, or must you define it
+   inline the first time it appears? — Q56.
+4. **What does the reader need in the first 200 words?** The page's
+   apex is not the TL;DR; it is the one-paragraph plain-English answer
+   to _"what is this and why should I care?"_. The TL;DR comes after. —
+   Q15, Q16.
+
+If any of those four answers is "I'm not sure" — **stop and ask the
+user.** Don't guess.
+
+## Failure modes I have already shipped (do not repeat)
+
+- **Comparison-table-before-definition.** Writing _"Microsoft 365 / Azure
+  / Power Automate / GitHub Copilot — here is the free tier of each"_
+  for an audience that doesn't know what Azure or GitHub Copilot _are_.
+  The fix: a plain-English Section 0 first — _"Microsoft gives nonprofits
+  three things: software, cloud infrastructure, and skilling. Here is
+  what each means for a small society like yours."_ Concrete outcomes
+  before product names.
+- **Jargon left undefined.** Every proper noun on first use gets a
+  short inline definition. _"Azure — Microsoft's rented data-centre
+  service for hosting websites, sending email at scale, and running
+  small databases."_ Not _"Azure"_ on its own.
+- **Designing for a procurement-savvy reader by accident.** When the
+  named reader has _no_ background, every layer of the page has to be
+  legible on its own. Inverted pyramid still applies, but the apex is
+  _what is this even?_ — not _which tier is cheapest?_.
+
+## Style and code conventions
+
+- One HTML file per page. Inlined `<style>`. No build step. (Manifesto
+  Ch. 8 + Q&A Q7.)
+- Tokenised colour and spacing in `:root`. Dark mode via
+  `prefers-color-scheme`. (Manifesto Ch. 6, Ch. 7; Q&A Q61.)
+- Three or four neutrals, one accent, one warning. (Manifesto Ch. 6;
+  Q&A Q50.) The Hellenic project uses paper-warm bg `#fafaf7`, accent
+  blue `#0b5cab`, warning rust `#a0521d`, plus a passe-partout mat
+  `#efe6d4` for figures.
+- Serif body, sans headings, single column, ~70 ch measure.
+- Native HTML elements first: `<details>`, `<dialog>`, `<table>`,
+  `<figure>`, `<aside>`. ARIA only where the native semantics fall
+  short.
+- Print stylesheet required (Q&A Q63).
+- Inline SVG icons; no icon fonts.
+- Never load JS to do a layout job a CSS feature can do
+  (`@container`, `:has()`, grid, flex).
+
+## How to use the image-generation script
+
+```powershell
+python scripts/generate_image_apim.py `
+  --env-file "<path to .env with PINGPINGAPIM_SUBSCRIPTION_KEY>" `
+  --output-dir <folder> `
+  --orientation landscape `
+  --output-format jpeg `
+  --quality low `
+  --max-attempts 8 `
+  --prompt "<vase-style description>"
+```
+
+- Tier-1 rate limits: **9 RPM** on `gpt-image-2` GlobalStandard.
+  The script auto-retries through `EngineOverloaded` 429s with
+  exponential backoff (cap 90 s) up to `--max-attempts` (default 6).
+- Image style for the Hellenic project: black-figure Attic vase
+  painting on warm cream ground, fine ochre-red line details, Greek
+  meander frieze along the edges. **Never** include text, faces, or
+  logos in prompts (gpt-image-2 renders them badly).
+- Figures on the page wear a passe-partout mat
+  (`figure { background: var(--mat); border: 1px solid var(--mat-edge) }`)
+  so cream-on-paper-warm mismatches read as deliberate.
+
+## When in doubt
+
+Re-read this file, then Q1, Q2, Q15, Q56 of `docs/design_qna.md` —
+in that order.

@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ARCHIVED VERSION — DO NOT EDIT
+  Version:   v1
+  Archived:  2026-05-12
+  Reason:    Superseded by hellenic/index.html (v2 redesign:
+             plain-English Section 0, collapsed Details, earthy
+             palette, vase-style imagery, Next Steps flow).
+  Live page: ../index.html
+  Naming:    index.vN.YYYY-MM-DD.html where N is the version
+             being archived and the date is the archive date.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="../index.html">
+  <title>[Archived v1 · 2026-05-12] Microsoft Offers for Eligible Nonprofits</title>
+  <style>
+    :root {
+      --blue-900: #062b63;
+      --blue-800: #073d8f;
+      --blue-700: #075ab8;
+      --blue-600: #0f6cbd;
+      --blue-100: #d9ebff;
+      --blue-050: #f3f9ff;
+      --ink: #172033;
+      --muted: #526172;
+      --line: #c8ddf4;
+      --white: #ffffff;
+      --gold: #b8860b;
+      --shadow: 0 16px 38px rgba(6, 43, 99, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--blue-700);
+      font-weight: 650;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: var(--blue-900);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 20;
+      background: var(--blue-900);
+      color: var(--white);
+      padding: 0.65rem 0.9rem;
+      border-radius: 6px;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .meander {
+      min-height: 20px;
+      background-color: var(--blue-800);
+      background-image:
+        linear-gradient(90deg, transparent 0 8px, var(--white) 8px 12px, transparent 12px 24px),
+        linear-gradient(180deg, transparent 0 8px, var(--white) 8px 12px, transparent 12px 20px);
+      background-size: 24px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .masthead {
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 58%, #eef7ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .masthead-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.7fr);
+      gap: 2rem;
+      align-items: stretch;
+      padding: 3rem 0 2.4rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.7rem;
+      color: var(--blue-700);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--blue-900);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: 2.6rem;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.7rem;
+    }
+
+    h3 {
+      margin: 1.1rem 0 0.35rem;
+      font-size: 1.08rem;
+    }
+
+    p {
+      margin: 0 0 0.9rem;
+    }
+
+    ul {
+      margin: 0.35rem 0 1rem;
+      padding-left: 1.35rem;
+    }
+
+    li + li {
+      margin-top: 0.22rem;
+    }
+
+    .lede {
+      max-width: 780px;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .masthead-actions,
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.35rem;
+    }
+
+    .button,
+    button.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid var(--blue-600);
+      border-radius: 8px;
+      background: var(--blue-700);
+      color: var(--white);
+      padding: 0.62rem 0.9rem;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .button.secondary,
+    button.button.secondary {
+      background: var(--white);
+      color: var(--blue-800);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    button.button:hover,
+    button.button:focus-visible {
+      border-color: var(--blue-900);
+      box-shadow: 0 0 0 3px rgba(15, 108, 189, 0.16);
+    }
+
+    .summary-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+
+    .summary-panel h2 {
+      font-size: 1.2rem;
+    }
+
+    .fact-list {
+      display: grid;
+      gap: 0.6rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fact-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.55rem;
+      align-items: start;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .mark {
+      display: inline-grid;
+      place-items: center;
+      width: 1.45rem;
+      height: 1.45rem;
+      border-radius: 999px;
+      background: var(--blue-100);
+      color: var(--blue-900);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    nav.toc {
+      background: var(--blue-900);
+      color: var(--white);
+    }
+
+    .toc-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 1rem 0;
+    }
+
+    .toc a {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 8px;
+      color: var(--white);
+      padding: 0.38rem 0.65rem;
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    main {
+      background: linear-gradient(180deg, var(--white), #f8fbff 44%, var(--white));
+    }
+
+    .section-band {
+      padding: 2.6rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-band:nth-of-type(even) {
+      background: rgba(243, 249, 255, 0.72);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 1.3rem;
+    }
+
+    .section-number {
+      color: var(--blue-600);
+      font-weight: 850;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .source-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.45rem;
+    }
+
+    .source-pills a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      padding: 0.25rem 0.55rem;
+      font-size: 0.82rem;
+      text-decoration: none;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.82fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .content-grid.single {
+      grid-template-columns: 1fr;
+    }
+
+    .panel,
+    details.paid-option,
+    details.exclusion,
+    .callout {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .panel,
+    .callout {
+      padding: 1.15rem;
+    }
+
+    .panel h3:first-child,
+    .callout h3:first-child {
+      margin-top: 0;
+    }
+
+    .callout {
+      border-left: 4px solid var(--gold);
+      background: #fffdf7;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.8rem;
+    }
+
+    details.paid-option {
+      overflow: hidden;
+    }
+
+    details.paid-option summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 0.7rem;
+      align-items: center;
+      min-height: 86px;
+      padding: 1rem;
+      cursor: pointer;
+      color: var(--blue-900);
+      background: var(--white);
+      list-style: none;
+    }
+
+    details.paid-option summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.paid-option summary::after {
+      content: "+";
+      display: inline-grid;
+      place-items: center;
+      width: 1.6rem;
+      height: 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--blue-050);
+      color: var(--blue-800);
+      font-weight: 900;
+    }
+
+    details.paid-option[open] summary {
+      border-bottom: 1px solid var(--line);
+      background: var(--blue-050);
+    }
+
+    details.paid-option[open] summary::after {
+      content: "-";
+    }
+
+    .summary-title {
+      font-weight: 850;
+    }
+
+    .summary-price {
+      color: var(--blue-900);
+      font-size: 1.16rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .summary-price span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .price {
+      margin: 0.3rem 0 0.6rem;
+      color: var(--blue-900);
+      font-size: 1.42rem;
+      font-weight: 850;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      background: var(--blue-050);
+      color: var(--blue-900);
+      padding: 0.18rem 0.55rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    details.exclusion {
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+
+    details.exclusion summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 54px;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      color: var(--blue-900);
+      background: var(--blue-050);
+      font-weight: 850;
+    }
+
+    details.exclusion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.exclusion summary::after {
+      content: "+";
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 1.6rem;
+      height: 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--blue-800);
+      font-weight: 900;
+    }
+
+    details.exclusion[open] summary::after {
+      content: "-";
+    }
+
+    .details-body {
+      padding: 1rem;
+    }
+
+    .details-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .rule-grid,
+    .recommendation-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .rule-tile {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 1rem;
+      min-height: 132px;
+    }
+
+    .rule-tile strong {
+      display: block;
+      color: var(--blue-900);
+      margin-bottom: 0.45rem;
+    }
+
+    .recommendation-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .source-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 1rem;
+    }
+
+    .source-group h3 {
+      margin-top: 0;
+    }
+
+    .source-group ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .source-group li {
+      overflow-wrap: anywhere;
+    }
+
+    .top-link {
+      display: inline-flex;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      padding: 1.3rem 0 2.2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .masthead-inner,
+      .content-grid,
+      .section-head,
+      .source-list,
+      .recommendation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .source-pills {
+        justify-content: flex-start;
+      }
+
+      .price-grid,
+      .rule-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shell {
+        width: min(100% - 1rem, 1120px);
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.45rem;
+      }
+
+      .masthead-inner,
+      .section-band {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .price-grid,
+      .rule-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button,
+      button.button {
+        width: 100%;
+      }
+    }
+
+    @media print {
+      .masthead-actions,
+      .control-row,
+      .toc,
+      .top-link,
+      .skip-link {
+        display: none;
+      }
+
+      body {
+        background: var(--white);
+      }
+
+      details.exclusion {
+        break-inside: avoid;
+      }
+
+      details.exclusion:not([open]) .details-body {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+<aside style="background:#5d1818;color:#fff;padding:0.85rem 1.25rem;font-family:system-ui,sans-serif;font-size:0.95rem;line-height:1.4;text-align:center;border-bottom:2px solid #2a0a0a">
+  <strong>Archived version (v1, 2026-05-12).</strong>
+  This page is kept for reference only.
+  <a href="../index.html" style="color:#fff;text-decoration:underline;font-weight:600">Go to the current page →</a>
+</aside>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="meander" aria-hidden="true"></div>
+
+  <header class="masthead" id="top">
+    <div class="shell masthead-inner">
+      <div>
+        <p class="eyebrow">External-shareable summary</p>
+        <h1>Microsoft offers for eligible nonprofits</h1>
+        <p class="lede">A clean summary of the major free grants, discounted plans, common exclusions, upgrade triggers, and public sources for Microsoft 365, Azure, Power Automate, Dream Space, Windows, GitHub, and GitHub Copilot.</p>
+        <div class="masthead-actions" aria-label="Primary jumps">
+          <a class="button" href="#quick-recommendation">Quick recommendation</a>
+          <a class="button secondary" href="#public-sources">Public sources</a>
+        </div>
+      </div>
+
+      <aside class="summary-panel" aria-label="Free starting point snapshot">
+        <h2>Free starting point</h2>
+        <ul class="fact-list">
+          <li><span class="mark">1</span><span>Microsoft 365 Business Basic: free for up to 300 users.</span></li>
+          <li><span class="mark">2</span><span>Azure nonprofit grant: $2,000/year in credits.</span></li>
+          <li><span class="mark">3</span><span>Power Automate: basic Microsoft 365 workflows with standard connectors.</span></li>
+          <li><span class="mark">4</span><span>GitHub Team: free for eligible verified nonprofits.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Page sections">
+    <div class="shell toc-inner">
+      <a href="#general-rule">General rule</a>
+      <a href="#microsoft-365">Microsoft 365</a>
+      <a href="#azure">Azure</a>
+      <a href="#power-automate">Power Automate</a>
+      <a href="#dream-space">Dream Space</a>
+      <a href="#windows-training">Windows and training</a>
+      <a href="#github-nonprofits">GitHub</a>
+      <a href="#github-copilot">GitHub Copilot</a>
+      <a href="#quick-recommendation">Recommendation</a>
+      <a href="#public-sources">Sources</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="section-band" id="general-rule">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">General rule</span>
+            <h2>Read every free or discounted offer through five checks</h2>
+          </div>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-tile"><strong>What is free</strong>Identify the actual product, grant, credit, licence, or programme being offered.</div>
+          <div class="rule-tile"><strong>What is included</strong>Check user caps, credits, licences, automation minutes, storage, and included features.</div>
+          <div class="rule-tile"><strong>What is not included</strong>Confirm the missing capabilities before assuming the free offer covers them.</div>
+          <div class="rule-tile"><strong>What the upgrade adds</strong>Compare the paid alternative and annualised cost where pricing is monthly or billed yearly.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band" id="microsoft-365">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">1. Microsoft 365 / Office</span>
+            <h2>Microsoft 365 and Office for nonprofits</h2>
+          </div>
+          <div class="source-pills" aria-label="Microsoft 365 source links">
+            <a href="#source-m365-pricing">M365 pricing</a>
+            <a href="#source-ms-nonprofit-offers">Nonprofit offers</a>
+            <a href="#source-m365-offers-learn">M365 offers docs</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free offer</span>
+            <h3>Microsoft 365 Business Basic</h3>
+            <p>Free grant for <strong>up to 300 users</strong>. This is the mainstream free Microsoft 365 offer to focus on.</p>
+            <p>Includes web and mobile versions of Outlook, Teams, Word, Excel, PowerPoint, OneNote, and other Microsoft 365 web/mobile apps.</p>
+            <p>Also includes Exchange, OneDrive, SharePoint, Teams, 1 TB cloud storage per user, and Microsoft 365 Copilot Chat at no extra charge as part of Microsoft 365.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Best for</h3>
+            <ul>
+              <li>Email</li>
+              <li>Teams meetings and chat</li>
+              <li>Browser-based Office work</li>
+              <li>Basic file sharing</li>
+              <li>Basic collaboration</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included in the free Microsoft 365 Business Basic grant</summary>
+          <div class="details-body">
+            <h3>Desktop Office apps are not included</h3>
+            <ul>
+              <li>No installed desktop Word</li>
+              <li>No installed desktop Excel</li>
+              <li>No installed desktop PowerPoint</li>
+              <li>No installed desktop Outlook</li>
+              <li>Users mainly work through browser and mobile apps</li>
+            </ul>
+
+            <div class="price-grid">
+              <details class="paid-option">
+                <summary><span class="summary-title">Microsoft 365 Business Standard</span><span class="summary-price">$36 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Nonprofit price shown, billed yearly. Derived from $3/user/month x 12.</p>
+                  <p>Adds desktop Office apps, offline/local Office use, and a richer desktop productivity experience.</p>
+                  <p><strong>Best for:</strong> staff who need installed Office apps, offline work, or the familiar desktop Office experience without the full security and device-management package of Business Premium.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">Microsoft 365 Business Premium</span><span class="summary-price">$66 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Nonprofit price shown, billed yearly. Derived from $5.50/user/month x 12.</p>
+                  <p>Adds desktop Office apps, advanced identity and access management, enhanced cyberthreat protection, sensitive-data discovery/classification/protection, Microsoft Entra ID, Intune, Microsoft Defender, Microsoft Purview, and Windows 11-related business/security capabilities.</p>
+                  <p><strong>Best for:</strong> nonprofits handling sensitive data, device management, stronger identity controls, endpoint protection, and compliance tooling.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">Microsoft 365 Copilot add-on</span><span class="summary-price">$306 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Full Microsoft 365 Copilot is a paid add-on. Derived from $25.50/user/month x 12.</p>
+                  <p>Microsoft 365 Copilot Chat is included with Microsoft 365, but the full add-on adds deeper Copilot integration across Microsoft 365 apps and more advanced productivity assistance.</p>
+                  <p><strong>Best for:</strong> users who need Copilot inside productivity workflows across Microsoft 365 apps.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </details>
+
+        <details class="exclusion">
+          <summary>Important caution about older free grants</summary>
+          <div class="details-body">
+            <p>Do not assume old free grants for <strong>Microsoft 365 Business Premium</strong> or <strong>Office 365 E1</strong> are generally available as current mainstream free nonprofit offers.</p>
+            <p>The current mainstream free Microsoft 365 offer to focus on is <strong>Microsoft 365 Business Basic free up to 300 users</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-band" id="azure">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">2. Azure</span>
+            <h2>Azure for nonprofits</h2>
+          </div>
+          <div class="source-pills" aria-label="Azure source links">
+            <a href="#source-azure-offers">Azure offers</a>
+            <a href="#source-azure-free-account">Azure free account</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free offer</span>
+            <h3>Azure nonprofit grant</h3>
+            <p><strong>$2,000/year</strong> in Azure credits. This is an organisation-level annual grant, not a per-user licence.</p>
+            <p>It can be used for Azure services such as hosting websites, virtual machines, databases, analytics, cloud infrastructure, and AI/cloud workloads.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Paid alternative / after the grant</h3>
+            <p>After the annual Azure credit is consumed, usage becomes paid Azure consumption unless the organisation stops, caps, or changes usage.</p>
+            <p>Paid Azure adds continued cloud usage beyond the grant, the ability to scale workloads beyond the free annual credit, and access to more Azure services as normal paid consumption.</p>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included in the free Azure grant</summary>
+          <div class="details-body">
+            <h3>Not unlimited Azure</h3>
+            <ul>
+              <li>Usage beyond the $2,000/year credit becomes paid Azure consumption.</li>
+              <li>The grant is a credit amount, not unlimited VM or compute usage.</li>
+              <li>Storage usage consumes credit and can become paid once the grant is exhausted.</li>
+              <li>AI/cloud workloads consume Azure credit like other eligible services.</li>
+            </ul>
+
+            <h3>Not a user-based offer</h3>
+            <ul>
+              <li>There is no "free for 300 users" equivalent for Azure in this grant.</li>
+              <li>It is a monetary credit grant.</li>
+            </ul>
+
+            <h3>Not the same as the general Azure free account</h3>
+            <p>Azure free account offers and the nonprofit Azure grant are separate offers with separate terms.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-band" id="power-automate">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">3. Power Automate</span>
+            <h2>Power Automate for nonprofits</h2>
+          </div>
+          <div class="source-pills" aria-label="Power Automate source links">
+            <a href="#source-pa-faq">Licensing FAQ</a>
+            <a href="#source-pa-types">Licence types</a>
+            <a href="#source-pa-pricing">Pricing</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free / included use</span>
+            <h3>Seeded Microsoft 365 use</h3>
+            <p>Power Automate is included in limited form with Microsoft 365 licences. Microsoft 365 users can use Power Automate with <strong>standard connectors</strong>.</p>
+            <p>This means Microsoft 365 Business Basic grant users can use basic Power Automate scenarios where flows stay within included Microsoft 365 and standard connector rights.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Suitable free/basic scenarios</h3>
+            <ul>
+              <li>When a Form is submitted, send an email</li>
+              <li>When a SharePoint item is created, notify a Teams channel</li>
+              <li>Approval flows using standard connectors</li>
+              <li>Outlook, SharePoint, Teams, and OneDrive productivity automations</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included in the free / Microsoft 365-seeded Power Automate rights</summary>
+          <div class="details-body">
+            <h3>Premium connectors are not included</h3>
+            <p>Premium connector scenarios require standalone Power Apps or Power Automate licensing. Examples that often require premium rights include some database connections, ERP/CRM systems, Salesforce, SAP, ServiceNow, Azure premium connectors, and HTTP/custom API-style integrations.</p>
+
+            <h3>Custom connectors are not included</h3>
+            <p>Connecting to custom APIs or bespoke systems requires paid licensing.</p>
+
+            <h3>On-premises and advanced connector scenarios are not included</h3>
+            <p>Premium, on-premises, and custom connector scenarios require standalone Power Apps or Power Automate licensing.</p>
+
+            <h3>Full Dataverse scenarios are not included</h3>
+            <p>Microsoft Dataverse connector is listed as Premium for Power Automate and Power Apps.</p>
+
+            <h3>AI Builder is not included</h3>
+            <p>Document processing, prediction, text classification, object detection, and similar AI Builder scenarios require paid licensing or capacity.</p>
+
+            <h3>Full RPA / desktop automation is not included for business-critical use</h3>
+            <p>Full cloud and desktop automation requires paid Power Automate licensing. Unattended automation requires Process or Hosted Process licensing.</p>
+
+            <h3>Process mining / task mining is not included</h3>
+            <p>These are paid Power Automate capabilities and are not included in the free/basic seeded use.</p>
+
+            <div class="price-grid">
+              <details class="paid-option">
+                <summary><span class="summary-title">Power Automate Premium</span><span class="summary-price">$180 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Billed yearly. Derived from $15/user/month x 12.</p>
+                  <p>Adds premium connectors, custom connectors, cloud flows beyond basic Microsoft 365 scenarios, attended desktop flows/RPA, process mining/task mining capabilities, AI Builder capacity, and Dataverse entitlements.</p>
+                  <p><strong>Best for:</strong> power users, automation builders, and nonprofits integrating with systems outside standard Microsoft 365 connectors.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">Power Automate Process</span><span class="summary-price">$1,800 <span>/bot/year</span></span></summary>
+                <div class="details-body">
+                  <p>Billed yearly. Derived from $150/bot/month x 12.</p>
+                  <p>Adds unattended automation and core process automation that runs without a named human user directly triggering everything.</p>
+                  <p><strong>Best for:</strong> back-office automation, repeatable operational workflows, and bot-style automation.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">Power Automate Hosted Process</span><span class="summary-price">$2,580 <span>/bot/year</span></span></summary>
+                <div class="details-body">
+                  <p>Billed yearly. Derived from $215/bot/month x 12.</p>
+                  <p>Adds unattended automation, Microsoft-hosted machine capacity, and less need to manage your own automation infrastructure.</p>
+                  <p><strong>Best for:</strong> nonprofits that need unattended automation but do not want to manage their own machine or VM infrastructure.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </details>
+
+        <div class="callout" style="margin-top: 1rem;">
+          <h3>Practical Power Automate rule</h3>
+          <p><strong>Free/included:</strong> basic Microsoft 365 workflows with standard connectors.</p>
+          <p><strong>Paid required:</strong> premium connectors, Dataverse, custom APIs, RPA, AI Builder, process mining, unattended automation, or enterprise-scale automation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band" id="dream-space">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">4. Dream Space</span>
+            <h2>Dream Space</h2>
+          </div>
+          <div class="source-pills" aria-label="Dream Space source links">
+            <a href="#source-dream-space">Dream Space</a>
+            <a href="#source-dreamspace-fcl">FCL</a>
+            <a href="#source-dreamspace-w5">W5 LIFE</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free offer</span>
+            <h3>Microsoft Dream Space</h3>
+            <p>A free STEM, AI, and digital-skilling programme for students, teachers, schools, and communities.</p>
+            <p>Focus areas include STEM, AI, coding, digital skills, creativity, collaboration, ethical decision-making, and future skills.</p>
+          </div>
+
+          <div class="panel">
+            <h3>What Dream Space includes</h3>
+            <ul>
+              <li>Free immersive STEM experiences</li>
+              <li>Student learning experiences</li>
+              <li>Teacher training and teacher academies</li>
+              <li>Dream Space TV</li>
+              <li>Dream Space LIVE</li>
+              <li>Dream Space Digital Academy</li>
+              <li>Teacher Academies and teacher training resources</li>
+              <li>Free programming available year-round for schools</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included in Dream Space</summary>
+          <div class="details-body">
+            <h3>Not a Microsoft 365 licence grant</h3>
+            <p>Dream Space does not provide Microsoft 365 Business Basic, Standard, or Premium licences.</p>
+
+            <h3>Not an Azure credit grant</h3>
+            <p>It does not provide the Azure $2,000/year nonprofit grant.</p>
+
+            <h3>Not Power Automate premium licensing</h3>
+            <p>It does not provide Power Automate Premium, Power Automate Process, Power Automate Hosted Process, AI Builder, or premium connectors.</p>
+
+            <h3>Not GitHub Copilot or Microsoft 365 Copilot</h3>
+            <p>Dream Space is skilling and education support, not a Copilot licence offer.</p>
+
+            <h3>No per-user licence cap found</h3>
+            <p>Dream Space appears programme/access based rather than a "free for X users" licensing offer.</p>
+          </div>
+        </details>
+
+        <div class="callout" style="margin-top: 1rem;">
+          <h3>Practical Dream Space rule</h3>
+          <p><strong>Dream Space =</strong> free education/skilling programme.</p>
+          <p><strong>Dream Space !=</strong> operational IT licence grant.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band" id="windows-training">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">5. Windows and training</span>
+            <h2>Windows and nonprofit training</h2>
+          </div>
+          <div class="source-pills" aria-label="Windows and training source links">
+            <a href="#source-ms-nonprofit-offers">Nonprofit offers</a>
+            <a href="#source-nonprofit-products-learn">Products docs</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free / grant items</span>
+            <h3>Windows 11 Professional</h3>
+            <p>Grants of up to <strong>50 licences</strong> through TechSoup. Additional licences may be available at discounted pricing.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Free nonprofit training resources</h3>
+            <p>Microsoft provides nonprofit-focused training and skilling resources, including AI and digital-skilling materials.</p>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included in Windows and training offers</summary>
+          <div class="details-body">
+            <h3>Windows grant is capped</h3>
+            <p>Up to 50 licences. It is not unlimited.</p>
+
+            <h3>Training resources are not product licences</h3>
+            <p>Free training does not automatically include Microsoft 365 paid plans, Azure credits beyond the Azure grant, Power Automate Premium, GitHub Copilot, or Microsoft 365 Copilot.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-band" id="github-nonprofits">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">6. GitHub</span>
+            <h2>GitHub for Nonprofits</h2>
+          </div>
+          <div class="source-pills" aria-label="GitHub source links">
+            <a href="#source-github-nonprofits">GitHub nonprofits</a>
+            <a href="#source-github-team-docs">Team docs</a>
+            <a href="#source-github-pricing">Pricing</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free offer</span>
+            <h3>Free GitHub Team or 25% off Enterprise Cloud</h3>
+            <p>Eligible verified nonprofits can get free <strong>GitHub Team</strong> or <strong>25% off GitHub Enterprise Cloud</strong>.</p>
+            <p>GitHub states eligible nonprofits can receive a free GitHub Team plan with unlimited private repositories and unlimited users.</p>
+          </div>
+
+          <div class="panel">
+            <h3>What free GitHub Team includes</h3>
+            <ul>
+              <li>Unlimited public repositories</li>
+              <li>Unlimited private repositories</li>
+              <li>Protected branches and repository rules</li>
+              <li>Multiple reviewers in pull requests</li>
+              <li>Code owners and required reviewers</li>
+              <li>Draft pull requests, Pages, and Wikis</li>
+              <li>Environment deployment branches and secrets</li>
+              <li>Web-based support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 1rem;">
+          <div class="panel">
+            <h3>Automation and package allowance</h3>
+            <ul>
+              <li><strong>3,000 CI/CD minutes/month</strong></li>
+              <li>Equal to <strong>36,000 CI/CD minutes/year</strong></li>
+              <li><strong>2 GB Packages storage</strong></li>
+              <li>GitHub Actions usage is free for public repositories using standard GitHub-hosted runners</li>
+              <li>GitHub Actions usage is free for self-hosted runners</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Codespaces access</h3>
+            <p>GitHub Team includes access to GitHub Codespaces, but Codespaces usage itself should be checked against current GitHub pricing and billing terms.</p>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included / limitations of free GitHub Team</summary>
+          <div class="details-body">
+            <h3>Not GitHub Enterprise Cloud</h3>
+            <p>Enterprise Cloud is not free under the nonprofit offer. Nonprofits get 25% off GitHub Enterprise Cloud.</p>
+            <p>Enterprise Cloud adds data residency, Enterprise Managed Users, SCIM provisioning, enterprise account management, Audit Log API, SAML single sign-on, advanced auditing, GitHub Connect, premium support, 50,000 CI/CD minutes/month, and 50 GB Packages storage.</p>
+
+            <h3>Not unlimited private-repository CI/CD</h3>
+            <p>GitHub Team includes 3,000 CI/CD minutes/month. Usage beyond included amounts can be billed for private repositories.</p>
+
+            <h3>Codespaces is not unlimited free</h3>
+            <p>GitHub Team includes access to Codespaces. GitHub pricing also lists Codespaces as usage-based, starting at $0.18/hour compute and $0.07/GB storage. GitHub Docs state organisation and enterprise plans do not include a free GitHub Codespaces quota; free quota is described for personal accounts.</p>
+
+            <h3>Not GitHub Copilot Business or Enterprise</h3>
+            <p>GitHub for Nonprofits gives free GitHub Team or 25% off GitHub Enterprise Cloud. The sources do not state that GitHub Copilot is included in the free GitHub Team nonprofit offer. GitHub pricing lists Copilot separately from GitHub Team.</p>
+
+            <details class="paid-option" style="margin-top: 1rem;">
+              <summary><span class="summary-title">GitHub Enterprise Cloud paid alternative</span><span class="summary-price">25% <span>nonprofit discount</span></span></summary>
+              <div class="details-body">
+                <p><strong>GitHub Enterprise Cloud:</strong> 25% nonprofit discount. Adds additional security controls, admin controls, customisation options, data residency, Enterprise Managed Users, SCIM provisioning, enterprise account management, Audit Log API, SAML single sign-on, advanced auditing, GitHub Connect, premium support, larger Actions allowance, and larger Packages storage.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-band" id="github-copilot">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">7. GitHub Copilot</span>
+            <h2>GitHub Copilot</h2>
+          </div>
+          <div class="source-pills" aria-label="GitHub Copilot source links">
+            <a href="#source-copilot-plans">Copilot plans</a>
+            <a href="#source-copilot-billing-blog">Billing blog</a>
+            <a href="#source-copilot-docs-plans">Docs</a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <span class="tag">Free / included offer</span>
+            <h3>No nonprofit organisation-wide free Copilot plan found</h3>
+            <p>GitHub for Nonprofits sources mention free GitHub Team or 25% off GitHub Enterprise Cloud. They do not state that GitHub Copilot is included.</p>
+          </div>
+
+          <div class="panel">
+            <h3>GitHub Copilot Free</h3>
+            <p>Available to individual developers with limited usage: <strong>2,000 code completions/month</strong> and <strong>50 chat / agent-mode requests/month</strong>.</p>
+            <p>This is not the same as a nonprofit organisation-wide Copilot grant.</p>
+          </div>
+        </div>
+
+        <details class="exclusion">
+          <summary>Not included and important Copilot limitations</summary>
+          <div class="details-body">
+            <ul>
+              <li>GitHub Copilot is not included in the free GitHub Team nonprofit grant based on the public sources found.</li>
+              <li>GitHub Copilot Free is limited and individual-oriented.</li>
+              <li>It should not be presented as a full nonprofit organisational Copilot grant.</li>
+              <li>From 1 June 2026, Copilot billing changes to usage-based AI Credits, so heavy usage may cost more than the base subscription price.</li>
+            </ul>
+
+            <div class="price-grid" style="margin-top: 1rem;">
+              <details class="paid-option">
+                <summary><span class="summary-title">GitHub Copilot Business</span><span class="summary-price">$228 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Public GitHub blog states base plan price: $19/user/month.</p>
+                  <p>GitHub says base plan pricing is not changing as Copilot moves to usage-based billing from 1 June 2026.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">GitHub Copilot Enterprise</span><span class="summary-price">$468 <span>/user/year</span></span></summary>
+                <div class="details-body">
+                  <p>Public GitHub blog states base plan price: $39/user/month.</p>
+                  <p>GitHub says base plan pricing is not changing as Copilot moves to usage-based billing from 1 June 2026.</p>
+                </div>
+              </details>
+
+              <details class="paid-option">
+                <summary><span class="summary-title">Usage-based AI Credits</span><span class="summary-price">Paid <span>overage risk</span></span></summary>
+                <div class="details-body">
+                  <p>From 1 June 2026, Copilot usage will consume GitHub AI Credits. Usage beyond included allowances may require additional paid usage depending on plan and admin settings.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-band" id="quick-recommendation">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">8. Practical recommendation</span>
+            <h2>Quick practical recommendation</h2>
+          </div>
+        </div>
+
+        <div class="recommendation-grid">
+          <div class="panel">
+            <span class="tag">Good free starting point</span>
+            <ul>
+              <li>Microsoft 365 Business Basic free for up to 300 users</li>
+              <li>Azure $2,000/year grant</li>
+              <li>Basic Power Automate with standard Microsoft 365 connectors</li>
+              <li>GitHub Team free if code/project collaboration is needed</li>
+              <li>Dream Space if the need is student, teacher, or community digital skilling</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <span class="tag">Upgrade triggers</span>
+            <ul>
+              <li>Desktop Office apps: Microsoft 365 Business Standard, $36/user/year</li>
+              <li>Security, device management, compliance, identity protection: Microsoft 365 Business Premium, $66/user/year</li>
+              <li>Full Microsoft 365 Copilot: Microsoft 365 Copilot, $306/user/year</li>
+              <li>Premium automation, Dataverse, RPA, AI Builder, custom connectors: Power Automate Premium, $180/user/year</li>
+              <li>Unattended automation: Power Automate Process, $1,800/bot/year</li>
+              <li>Microsoft-hosted unattended automation: Power Automate Hosted Process, $2,580/bot/year</li>
+              <li>Enterprise GitHub governance/security/SSO/audit/data residency: GitHub Enterprise Cloud, 25% nonprofit discount</li>
+              <li>Coding AI at organisational scale: GitHub Copilot Business or Enterprise, not included in free GitHub Team nonprofit grant</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="control-row" aria-label="Expandable section controls">
+          <button class="button" type="button" data-expand-all>Expand all non-free sections</button>
+          <button class="button secondary" type="button" data-collapse-all>Collapse all non-free sections</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band" id="public-sources">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-number">Public sources only</span>
+            <h2>End links and public source library</h2>
+          </div>
+        </div>
+
+        <div class="source-list">
+          <div class="source-group" id="sources-m365">
+            <h3>Microsoft 365 / nonprofit offers</h3>
+            <ol>
+              <li><a id="source-m365-pricing" href="https://www.microsoft.com/en-us/microsoft-365/business/nonprofit-plans-and-pricing" target="_blank" rel="noopener noreferrer">Microsoft 365 Business Plans and Pricing | Nonprofit</a></li>
+              <li><a id="source-ms-nonprofit-offers" href="https://www.microsoft.com/en-us/nonprofits/offers-for-nonprofits" target="_blank" rel="noopener noreferrer">Technology and software grants and discounts for nonprofits | Microsoft Nonprofits</a></li>
+              <li><a id="source-m365-offers-learn" href="https://learn.microsoft.com/en-us/industry/nonprofit/microsoft-for-nonprofits/m365-offers" target="_blank" rel="noopener noreferrer">Access Microsoft 365 Offers - Microsoft for Nonprofits</a></li>
+              <li><a id="source-nonprofit-products-learn" href="https://learn.microsoft.com/en-us/industry/nonprofit/microsoft-for-nonprofits/nonprofit-offerings-products" target="_blank" rel="noopener noreferrer">Nonprofit Offerings and Products - Microsoft for Nonprofits</a></li>
+              <li><a id="source-pax8-nonprofit-changes" href="https://www.pax8.com/blog/microsoft-365-licensing-changes-for-nonprofits/" target="_blank" rel="noopener noreferrer">Microsoft 365 Licensing Changes for Nonprofits | Pax8</a></li>
+              <li><a id="source-licenseq-nonprofit" href="https://licenseq.com/microsoft-nonprofit-licensing/" target="_blank" rel="noopener noreferrer">Microsoft Nonprofit Licensing: M365 Changes July 2025 Explained</a></li>
+            </ol>
+          </div>
+
+          <div class="source-group" id="sources-azure">
+            <h3>Azure</h3>
+            <ol>
+              <li><a id="source-azure-offers" href="https://azure.microsoft.com/en-us/pricing/offers" target="_blank" rel="noopener noreferrer">Azure Offers and Benefits | Microsoft Azure</a></li>
+              <li><a id="source-azure-free-account" href="https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account" target="_blank" rel="noopener noreferrer">Create Your Azure Free Account Or Pay As You Go | Microsoft Azure</a></li>
+            </ol>
+          </div>
+
+          <div class="source-group" id="sources-power-automate">
+            <h3>Power Automate / Power Platform</h3>
+            <ol>
+              <li><a id="source-pa-faq" href="https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/faqs" target="_blank" rel="noopener noreferrer">Power Automate licensing FAQ - Power Platform</a></li>
+              <li><a id="source-pa-types" href="https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/types" target="_blank" rel="noopener noreferrer">Types of Power Automate licences - Power Platform</a></li>
+              <li><a id="source-power-platform-faq" href="https://learn.microsoft.com/en-us/power-platform/admin/powerapps-flow-licensing-faq" target="_blank" rel="noopener noreferrer">Power Platform licensing FAQs - Power Platform</a></li>
+              <li><a id="source-pa-pricing" href="https://www.microsoft.com/en-us/power-platform/products/power-automate/pricing" target="_blank" rel="noopener noreferrer">Power Automate Pricing | Microsoft Power Platform</a></li>
+            </ol>
+          </div>
+
+          <div class="source-group" id="sources-dream-space">
+            <h3>Dream Space</h3>
+            <ol>
+              <li><a id="source-dream-space" href="https://dreamspace.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft Dream Space</a></li>
+              <li><a id="source-dreamspace-fcl" href="https://fcl.eun.org/dreamspace" target="_blank" rel="noopener noreferrer">DreamSpace - Microsoft Ireland STEM Education Centre</a></li>
+              <li><a id="source-dreamspace-w5" href="https://w5online.co.uk/w5-life/life-programmes/dream-space" target="_blank" rel="noopener noreferrer">Dream Space at W5 LIFE</a></li>
+            </ol>
+          </div>
+
+          <div class="source-group" id="sources-github">
+            <h3>GitHub</h3>
+            <ol>
+              <li><a id="source-github-nonprofits" href="https://github.com/solutions/industry/nonprofits" target="_blank" rel="noopener noreferrer">GitHub for Nonprofits</a></li>
+              <li><a id="source-github-team-docs" href="https://docs.github.com/en/nonprofit/nonprofit-teams-plan/getting-started-with-the-github-team-plan-for-nonprofits" target="_blank" rel="noopener noreferrer">Getting started with the GitHub Team plan for nonprofits - GitHub Docs</a></li>
+              <li><a id="source-github-pricing" href="https://github.com/pricing" target="_blank" rel="noopener noreferrer">GitHub Pricing</a></li>
+              <li><a id="source-github-teams" href="https://github.com/team.platform" target="_blank" rel="noopener noreferrer">GitHub for Teams</a></li>
+              <li><a id="source-github-actions-billing" href="https://docs.github.com/en/billing/concepts/product-billing/github-actions" target="_blank" rel="noopener noreferrer">GitHub Actions billing - GitHub Docs</a></li>
+              <li><a id="source-github-codespaces-billing" href="https://docs.github.com/en/billing/concepts/product-billing/github-codespaces" target="_blank" rel="noopener noreferrer">GitHub Codespaces billing - GitHub Docs</a></li>
+              <li><a id="source-github-enterprise-azure" href="https://azure.microsoft.com/en-us/products/github" target="_blank" rel="noopener noreferrer">GitHub Enterprise | Microsoft Azure</a></li>
+            </ol>
+          </div>
+
+          <div class="source-group" id="sources-copilot">
+            <h3>GitHub Copilot</h3>
+            <ol>
+              <li><a id="source-copilot-plans" href="https://github.com/features/copilot/plans" target="_blank" rel="noopener noreferrer">GitHub Copilot plans and pricing</a></li>
+              <li><a id="source-copilot-billing-blog" href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/" target="_blank" rel="noopener noreferrer">GitHub Copilot is moving to usage-based billing</a></li>
+              <li><a id="source-copilot-docs-plans" href="https://docs.github.com/en/copilot/get-started/plans" target="_blank" rel="noopener noreferrer">Plans for GitHub Copilot - GitHub Docs</a></li>
+              <li><a id="source-copilot-model-pricing" href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener noreferrer">Models and pricing for GitHub Copilot - GitHub Docs</a></li>
+              <li><a id="source-copilot-learn-intro" href="https://learn.microsoft.com/en-us/training/modules/introduction-to-github-copilot/2-github-copilot-your-ai-pair-programmer" target="_blank" rel="noopener noreferrer">GitHub Copilot, your AI pair programmer - Microsoft Learn</a></li>
+              <li><a id="source-copilot-learn-compare" href="https://learn.microsoft.com/en-us/training/modules/get-started-github-copilot/3-compare-github-copilot-plans" target="_blank" rel="noopener noreferrer">Compare GitHub Copilot plans - Microsoft Learn</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <a class="top-link" href="#top">Back to top</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer-note">
+    <p>This standalone summary uses only the public source links listed above. Pricing and programme details should be rechecked before procurement, grant planning, or external publication.</p>
+  </footer>
+
+  <script>
+    (function () {
+      const details = Array.from(document.querySelectorAll("details.exclusion, details.paid-option"));
+      const expandAll = document.querySelector("[data-expand-all]");
+      const collapseAll = document.querySelector("[data-collapse-all]");
+
+      if (expandAll) {
+        expandAll.addEventListener("click", function () {
+          details.forEach(function (item) { item.open = true; });
+        });
+      }
+
+      if (collapseAll) {
+        collapseAll.addEventListener("click", function () {
+          details.forEach(function (item) { item.open = false; });
+        });
+      }
+    }());
+  </script>
+</body>
+</html>
