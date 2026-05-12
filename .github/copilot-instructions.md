@@ -162,6 +162,38 @@ Common substitutions:
 Before pushing, search visible body text for `\b(we|our|us|ours)\b`.
 Any hit must be justified by an explicit user instruction.
 
+## Never patronise the reader (mandatory)
+
+Pages in this repo are written for adults with full intellectual
+agency who simply do not happen to be IT specialists. **Do not write
+sentences that explain why it's "normal" or "okay" that the reader
+doesn't know a thing.** Don't reassure them. Don't soften the
+information. Just explain the thing.
+
+Concrete failure (do not repeat): the page shipped with the line
+*"If you have not heard of 'Azure' or 'GitHub', that is normal —
+most committee members of a society this size have not."* The user,
+correctly, called it out: *"yes, condescending you moron! remove the
+whole sentence […] no replacement"*.
+
+### The rule
+
+- **Never** assert what the reader does or doesn't already know.
+- **Never** frame ignorance of a product as the default for the
+  reader's role, profession, age, organisation size, or background.
+- **Never** prepend a section with a "don't worry if you don't know
+  X" disclaimer. Just define X inline the first time it's used.
+- If a product name needs translating into plain language, do it via
+  a parenthetical the first time it appears (e.g.
+  *"a small server in Microsoft's data centre (Microsoft calls it
+  Azure)"*) — and then stop explaining.
+
+### Pre-deploy grep
+
+Before pushing, search visible body text for: `that is normal`,
+`don't worry`, `most […] have not`, `if you have not heard`, `if
+you don't know what`, `in case you're not`. Any hit must be removed.
+
 ## Where the APIM image-generation key lives
 
 The image script (`scripts/generate_image_apim.py`) needs
