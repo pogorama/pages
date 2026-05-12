@@ -139,8 +139,16 @@ write training for community members and students"*.
   "the treasurer", "members", "community members", "students".
 - **Second person is fine.** "You" addresses the reader directly
   and is appropriate for instructions and questions.
-- **First person singular** ("I recommend …") is allowed for the
-  author's voice in clearly opinionated sections.
+- **First person singular** ("I recommend …", "what I think", "in my
+  view") is **also banned** in visible body text. The author is not
+  visible on these pages. Don't write `<h2>What I recommend …</h2>`
+  or `<summary>… what I recommend for a society of this size</summary>`.
+  Failure example (do not repeat): a Section&nbsp;8 with
+  *"What I recommend for a society of this size"* / *"A practical
+  recommendation"*. The user, correctly, said *"dont use I statements
+  […] remove the whole section 8 from english and greek version"*.
+  If the page genuinely needs author-voice recommendations, the user
+  will ask for them explicitly.
 - **First-person plural is banned** unless the user explicitly tells
   you to use it (e.g. a page that is genuinely a society's own
   voice). The default is OFF.
