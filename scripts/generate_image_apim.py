@@ -12,17 +12,27 @@ the public APIM gateway at `https://pingpingapim.azure-api.net`. See
 Secrets:
     The APIM subscription key is read from the
     `PINGPINGAPIM_SUBSCRIPTION_KEY` environment variable, or from a
-    sibling `.env` file. No key is ever read from or written to this
-    script.
+    `.env` file. No key is ever read from or written to this script.
+
+    On this workstation the key currently lives at::
+
+        C:\\Users\\phgermey\\OneDrive - Microsoft\\###AO\\Dashboard\\ui_mockups\\.env
+
+    The script auto-discovers that path (see ``KNOWN_ENV_FILE_PATHS``
+    below) and falls back to it whenever the repo-root ``.env`` does
+    not exist. If you need to point at a different ``.env``, pass
+    ``--env-file <path>`` explicitly.
 
 Examples (PowerShell):
 
-    $env:PINGPINGAPIM_SUBSCRIPTION_KEY = "<your APIM subscription key>"
+    # No env setup needed — the script auto-discovers the dashboard .env.
     python .\\scripts\\generate_image_apim.py `
         --prompt "A cinematic product photo of a glass robot on a workbench" `
         --output-dir .\\out
 
+    # Explicit env file override.
     python .\\scripts\\generate_image_apim.py `
+        --env-file "C:\\Users\\phgermey\\OneDrive - Microsoft\\###AO\\Dashboard\\ui_mockups\\.env" `
         --prompt "Change the paperclip to a Peruvian paperclip in watercolor." `
         --edit-image .\\inputs\\original.png `
         --output-dir .\\out `
@@ -56,6 +66,38 @@ TRANSPARENT_DEPLOYMENT = "gpt-image-1.5"
 DEFAULT_API_VERSION = "2025-04-01-preview"
 DEFAULT_TIMEOUT_SECONDS = 240
 
+# Where the APIM subscription key actually lives on this workstation.
+# Searched in order; the first existing file wins. --env-file overrides
+# all of these. Adding a path here is the right way to "remember" a new
+# location across runs.
+KNOWN_ENV_FILE_PATHS: list[Path] = [
+    # 1. Repo-root .env (preferred for new setups).
+    Path(__file__).resolve().parent.parent / ".env",
+    # 2. Existing dashboard configuration. This is where the
+    #    PINGPINGAPIM_SUBSCRIPTION_KEY currently lives and has lived for
+    #    the entire pogorama/pages project. If the script ever reports
+    #    "Missing APIM subscription key", check that this path still
+    #    exists before suggesting the user set an env var.
+    Path(
+        r"C:\Users\phgermey\OneDrive - Microsoft\###AO\Dashboard\ui_mockups\.env"
+    ),
+    # 3. Shared LiteLLM-style .env at C:\dev\vscode (kept for parity
+    #    even though it currently does NOT contain the PINGPINGAPIM key).
+    Path(r"C:\dev\vscode\.env"),
+]
+
+
+def find_default_env_file() -> Path | None:
+    """Return the first KNOWN_ENV_FILE_PATHS entry that exists, or None."""
+    for candidate in KNOWN_ENV_FILE_PATHS:
+        try:
+            if candidate.exists():
+                return candidate
+        except OSError:
+            continue
+    return None
+
+
 ORIENTATION_PRESETS = {
     "square": "2880x2880",
     "landscape": "3840x2160",
@@ -86,9 +128,14 @@ def parse_bool(value: str | None) -> bool:
 
 def resolve_config(args: argparse.Namespace) -> dict[str, str]:
     """Merge command-line args, OS env, and an optional .env file."""
-    env_file = parse_env_file(Path(args.env_file)) if args.env_file else parse_env_file(
-        Path(__file__).resolve().parent.parent / ".env"
-    )
+    if args.env_file:
+        env_path = Path(args.env_file)
+    else:
+        discovered = find_default_env_file()
+        env_path = discovered if discovered is not None else (
+            Path(__file__).resolve().parent.parent / ".env"
+        )
+    env_file = parse_env_file(env_path)
 
     def pick(env_name: str, cli_value: str | None, fallback: str | None = None) -> str | None:
         return cli_value or os.environ.get(env_name) or env_file.get(env_name) or fallback
@@ -109,9 +156,15 @@ def resolve_config(args: argparse.Namespace) -> dict[str, str]:
     key = pick("PINGPINGAPIM_SUBSCRIPTION_KEY", args.api_key)
 
     if not key:
+        searched = "\n  - ".join(str(p) for p in KNOWN_ENV_FILE_PATHS)
         raise SystemExit(
-            "Missing APIM subscription key. Set PINGPINGAPIM_SUBSCRIPTION_KEY "
-            "or pass --api-key. (No keys are read from or written to this script.)"
+            "Missing APIM subscription key (PINGPINGAPIM_SUBSCRIPTION_KEY).\n"
+            f"Auto-discovery searched these .env paths in order:\n  - {searched}\n"
+            "None of them contained the key. Either:\n"
+            "  1. add PINGPINGAPIM_SUBSCRIPTION_KEY=... to one of them,\n"
+            "  2. pass --env-file <path>, or\n"
+            "  3. pass --api-key <key>.\n"
+            "(No keys are read from or written to this script.)"
         )
 
     return {

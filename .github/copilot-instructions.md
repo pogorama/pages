@@ -116,6 +116,76 @@ under the hero just repeats that or worse, slides into a tagline.
 Don't add one. If a figcaption is genuinely needed (e.g. citing a
 photographer, naming a chart's source), keep it factual and brief.
 
+## Voice: third person, not first-person plural (mandatory)
+
+Pages in this repo are written **for** a named non-technical
+audience (e.g. committee members of the Hellenic Community of
+Ireland). They are **not** written **by** that audience. The author
+is not part of the society. So **do not write in first-person
+plural** ("we", "our", "us", "ours") in visible body text. It is
+inaccurate, it is presumptuous, and it slides into committee-minutes
+voice.
+
+Concrete failure (do not repeat): the page shipped with phrases
+like *"a society like ours needs"*, *"on our own domain"*, *"so we
+don't enter every payment by hand"*, *"Training for our people"*,
+*"for a society our size"*. The user, correctly, called it out:
+*"who told you to write in second person plural you idiot! no one!
+write training for community members and students"*.
+
+### The rule
+
+- **Default to third person.** "The society", "the committee",
+  "the treasurer", "members", "community members", "students".
+- **Second person is fine.** "You" addresses the reader directly
+  and is appropriate for instructions and questions.
+- **First person singular** ("I recommend …") is allowed for the
+  author's voice in clearly opinionated sections.
+- **First-person plural is banned** unless the user explicitly tells
+  you to use it (e.g. a page that is genuinely a society's own
+  voice). The default is OFF.
+
+Common substitutions:
+
+| Wrong                          | Right                                 |
+| ------------------------------ | ------------------------------------- |
+| our society / a society like ours | the society                        |
+| our domain                     | the society's domain                  |
+| our members                    | members / community members           |
+| our people                     | community members and students        |
+| for our size                   | for a society of this size            |
+| we don't enter payments        | the treasurer does not enter payments |
+| does for us                    | does for the society                  |
+
+### Pre-deploy grep
+
+Before pushing, search visible body text for `\b(we|our|us|ours)\b`.
+Any hit must be justified by an explicit user instruction.
+
+## Where the APIM image-generation key lives
+
+The image script (`scripts/generate_image_apim.py`) needs
+`PINGPINGAPIM_SUBSCRIPTION_KEY`. It is **not** in this repo and
+**not** in user/machine environment scope by default. It lives in
+the existing dashboard configuration at:
+
+    C:\Users\phgermey\OneDrive - Microsoft\###AO\Dashboard\ui_mockups\.env
+
+Always invoke the script with `--env-file` pointing at that path:
+
+```
+python scripts\generate_image_apim.py `
+  --env-file "C:\Users\phgermey\OneDrive - Microsoft\###AO\Dashboard\ui_mockups\.env" `
+  --prompt "..." `
+  --orientation landscape --output-dir hellenic\images\staging `
+  --output-format jpeg --max-attempts 40 --compact
+```
+
+Do **not** report image generation as "blocked because the env var
+isn't set". The key has been usable in this workstation for the
+whole project — the failure mode is forgetting where to find it,
+not a missing secret. Look here first.
+
 ## What this repo is
 
 - `docs/web-design-manifesto.md` — the **what**: ten chapters, fifty rules,

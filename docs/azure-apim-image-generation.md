@@ -50,6 +50,39 @@ Optional:
 | `UI_MOCKUPS_IMAGE_MODEL`           | Override the deployment name (defaults to `gpt-image-2`)               |
 | `UI_MOCKUPS_TRANSPARENT_BACKGROUND`| `true`/`1`/`yes` swaps the default deployment to `gpt-image-1.5`       |
 
+### Where the key lives on this workstation (authoritative)
+
+`PINGPINGAPIM_SUBSCRIPTION_KEY` is **not** in this repo and is **not**
+in user/machine environment scope. It lives in the existing dashboard
+configuration:
+
+```
+C:\Users\phgermey\OneDrive - Microsoft\###AO\Dashboard\ui_mockups\.env
+```
+
+The script auto-discovers this path. The discovery order (see
+`KNOWN_ENV_FILE_PATHS` in `scripts/generate_image_apim.py`) is:
+
+1. `<repo-root>/.env` — preferred for new setups; currently absent.
+2. `C:\Users\phgermey\OneDrive - Microsoft\###AO\Dashboard\ui_mockups\.env`
+   — **this is where the key currently lives**.
+3. `C:\dev\vscode\.env` — kept for parity; does not contain the
+   `PINGPINGAPIM_*` key today.
+
+So in practice, **`python scripts\generate_image_apim.py …` just
+works** with no `--env-file` flag and no extra environment setup.
+Only override with `--env-file` if pointing at a different config.
+
+If the script ever prints `Missing APIM subscription key`:
+
+- First check that the dashboard `.env` path above still exists and
+  still contains the `PINGPINGAPIM_SUBSCRIPTION_KEY=` line.
+- Do **not** ask the user to set the env var. The key has been
+  available on this workstation for the whole project. The failure
+  mode is a missing or moved `.env`, not a missing secret.
+- If you discover a new location for the key, add it to
+  `KNOWN_ENV_FILE_PATHS` so the next run finds it automatically.
+
 ## Operation 1 — text-to-image (`/images/generations`)
 
 `POST {gateway}/openai/deployments/{deployment}/images/generations?api-version=2025-04-01-preview`
