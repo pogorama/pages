@@ -1,2 +1,9 @@
 # Local-only files
 DEPLOYMENT_AUTOMATION.md
+
+# Python
+__pycache__/
+*.pyc
+
+# Playwright
+.playwright-mcp/
