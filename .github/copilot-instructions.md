@@ -74,6 +74,48 @@ In the deployed page, search for: `manifesto`, `design_qna`,
 `design rationale`, `portfolio`. **Any hit in visible content is a
 bug to fix before push.**
 
+## "Remove X" means delete, not paraphrase (mandatory)
+
+When the user says a phrase is **dumb**, **cringe**, **marketing**,
+**condescending**, or **shit**, the failure they are pointing at is
+**the existence of that phrase**, not its exact wording. The
+correct response is to **delete the element entirely**, not to
+write a slightly less embarrassing version of the same thing.
+
+Concrete failure pattern I have actually shipped (do not repeat):
+
+1. The page had a hero figcaption reading
+   *"What Microsoft offers a small Greek-Irish society in Dublin — in
+   plain English."* The user replied: "how fucking dumb is that
+   sentence. remove that shit!"
+2. I replaced it with
+   *"Microsoft's free offer for the Hellenic Community of Ireland —
+   in plain English."* — same shape, same register, same problem.
+3. The user, correctly, was furious: "i just told you that that is
+   shit you moron! […] do NOT HAVE ANY TEXT THERE!"
+
+### The rule
+
+When asked to remove something dismissive, decorative, or
+marketing-flavoured, **delete the element entirely**:
+
+- Delete the `<figcaption>`, not just rewrite it.
+- Delete the tagline, byline, eyebrow or strap, not just rewrite it.
+- Delete the explanatory subtitle under a hero, not just rewrite it.
+- Delete the "About this page" footer paragraph, not just rewrite it.
+
+Only restore the element later if the user asks for content there.
+The default for hero images on these pages is **no caption at all**;
+the alt text covers screen readers.
+
+### Hero images don't get figcaptions on these pages
+
+A hero image is a mood-setting illustration above an H1. The H1 and
+lede already tell the reader what the page is about. A figcaption
+under the hero just repeats that or worse, slides into a tagline.
+Don't add one. If a figcaption is genuinely needed (e.g. citing a
+photographer, naming a chart's source), keep it factual and brief.
+
 ## What this repo is
 
 - `docs/web-design-manifesto.md` — the **what**: ten chapters, fifty rules,
