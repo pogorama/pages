@@ -4,6 +4,20 @@ This repo holds personal, HTML-first websites built to one style guide.
 Read this before touching any page — especially when you are about to
 "design" or "redesign" something.
 
+## Where rules live
+
+**All persistent rules live in this repo, in plain markdown, in the
+docs you can read here.** When the user gives a new rule, preference
+or convention, you write it into the relevant file — this file, the
+manifesto, `design_qna.md`, or a folder-level `README.md`. You do
+**not** put it into any external "memory" tool, "store_memory" call,
+or other hidden side-channel. Rules must be visible in the repo,
+version-controlled, reviewable in a PR, and readable on a phone.
+
+If the user tells you something is a rule, add it here (or the right
+doc) in the same response. Cite the user's wording in the commit
+message.
+
 ## What this repo is
 
 - `docs/web-design-manifesto.md` — the **what**: ten chapters, fifty rules,
@@ -99,6 +113,24 @@ python scripts/generate_image_apim.py `
 - Figures on the page wear a passe-partout mat
   (`figure { background: var(--mat); border: 1px solid var(--mat-edge) }`)
   so cream-on-paper-warm mismatches read as deliberate.
+
+### Versioning rule for images (mandatory)
+
+**Never overwrite an existing image file.** Images are slow and
+expensive to produce, and a newer one is not automatically better than
+the prior one. Always version.
+
+- Filenames: `<slot>.v<N>.<ext>` — e.g. `hero.v1.jpg`, `hero.v2.jpg`.
+  If a file currently has no version suffix (legacy), the next
+  generation creates `hero.v2.jpg` and the legacy file becomes `v1`.
+- Generate into the same folder as the live image. Do **not** create
+  parallel `images_new/` or `tmp/` folders that you then merge.
+- After generation, update the `<img src=...>` in HTML to point to the
+  new versioned filename.
+- Keep prior versions on disk so we can roll back without re-generating.
+- Each image folder contains a short `README.md` listing the current
+  version, the date generated, and the prompt used (see
+  `hellenic/images/README.md` for the format).
 
 ## When in doubt
 
