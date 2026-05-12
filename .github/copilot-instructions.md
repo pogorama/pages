@@ -18,6 +18,62 @@ If the user tells you something is a rule, add it here (or the right
 doc) in the same response. Cite the user's wording in the commit
 message.
 
+## Never leak internal docs into a public page (mandatory)
+
+The files in `docs/` (`web-design-manifesto.md`, `design_qna.md`,
+`azure-apim-image-generation.md`), this `copilot-instructions.md`,
+and any `README.md` outside the rendered HTML tree are **private
+working notes**. The user has not chosen to publish them. They are
+not a manifesto for the world; they are scaffolding for me.
+
+A page deployed to GitHub Pages must contain **zero** of the
+following in visible HTML (`<body>`, `<title>`, `<meta description>`,
+`alt` text, link text, footer):
+
+- The word **manifesto**, **Q&A**, **design rationale**, or any phrase
+  that frames the page as a portfolio piece or a design exercise.
+- Links to anything under `docs/`, `.github/`, or any sibling
+  `*.md` file in the repo.
+- Q-numbers (Q1, Q15, Q56 …) or "Manifesto Ch N" references.
+- "Design follows the project's own X" / "Built as a single HTML
+  file" / "uses inlined CSS" / any meta-commentary on how the page
+  was authored.
+- Crediting tools, styles or frameworks unless the reader needs them.
+
+These are fine to keep inside **HTML comments** (`<!-- -->`) or
+inside `<style>` comments, because those don't render. The test is:
+"would a reader who knows nothing about this repo ever see this
+phrase?" If yes, it must go.
+
+### Why this matters
+
+1. **Privacy.** The internal docs are personal working notes. The
+   user has not chosen to publish them. Linking to them on a live
+   site publishes them by inclusion — and they end up in search
+   engines, the Wayback Machine and link previews forever.
+2. **Audience violation.** Every public page in this repo has a
+   named non-technical reader (e.g. Hellenic Community committee
+   members). Their job-to-be-done has nothing to do with how the
+   page was designed. Meta-commentary in the footer is noise that
+   signals "this is a portfolio piece, not a tool for you."
+3. **No marketing voice.** Pages are written explicitly to avoid
+   marketing language. "Design follows our manifesto" *is*
+   marketing voice. Don't.
+4. **Brittle anchors.** Internal docs get renamed and refactored.
+   A live link to `../docs/web-design-manifesto.md` will silently
+   404 the moment that file is reorganised.
+5. **Attack surface.** Internal docs may contain unpolished drafts,
+   critiques of third parties, half-formed opinions, or notes about
+   security, money or people that should not be one click away from
+   a member of the public.
+
+### Pre-deploy checklist (run before every `git push` of a Pages site)
+
+In the deployed page, search for: `manifesto`, `design_qna`,
+`docs/`, `Q\d+`, `Ch \d+`, `inlined CSS`, `single HTML file`,
+`design rationale`, `portfolio`. **Any hit in visible content is a
+bug to fix before push.**
+
 ## What this repo is
 
 - `docs/web-design-manifesto.md` — the **what**: ten chapters, fifty rules,
