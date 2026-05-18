@@ -15,12 +15,14 @@ size 3840x2160.
 | `01-speed-race`            | `01-speed-race.v1.jpeg`       | §3 COO — felt vs. measured    |
 | `02-peacock-archer`        | `02-peacock-archer.v1.jpeg`   | §4 CEO — confidence ≠ accuracy |
 | `03-iceberg-ship`          | `03-iceberg-ship.v1.jpeg`     | §2 CFO — true cost of GenAI   |
-| `04-chorus`                | `04-chorus.v2.jpeg`           | "All four in one meeting"     |
+| `04-chorus`                | `04-chorus.v3.jpeg`           | "All four in one meeting"     |
 
-`04-chorus.v1.jpeg` rendered the outer cats with literal white holes
-instead of pale lacquered Noh masks; `v2` is an `/images/edits` pass
-on `v1` (input-fidelity high) that paints solid cream-coloured masks
-over the holes while preserving everything else.
+`04-chorus.v1.jpeg` and `v2` both rendered the outer cats with blank
+uncanny oval voids instead of proper faces. `v3` is a fresh generation
+that drops the Noh-mask concept: the four outer cats are now shown from
+behind (backs to viewer), revealing only richly patterned kimonos and
+thick striped tails, while the central calm cat faces the viewer with a
+real cat face. The balance-scale and writing-tablet are clearly visible.
 
 ## Versioning rule
 
