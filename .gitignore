@@ -35,6 +35,7 @@ __pycache__/
 venv/
 
 # Generated reports
+.impeccable/
 .playwright-mcp/
 playwright-report/
 test-results/
