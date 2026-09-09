@@ -1,9 +1,41 @@
 # Local-only files
 DEPLOYMENT_AUTOMATION.md
+/.github/*.md
+/docs/
+/scripts/
+/hellenic/archive/
+README.md
+
+# Local configuration and credentials
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Local source image versions
+/datascience/images/01-speed-race.v1.jpeg
+/datascience/images/02-peacock-archer.v1.jpeg
+/datascience/images/03-iceberg-ship.v1.jpeg
+/datascience/images/04-chorus.v1.jpeg
+/datascience/images/04-chorus.v2.jpeg
+/datascience/images/04-chorus.v3.jpeg
+/hellenic/images/hero.jpg
+/hellenic/images/hero.v1.jpg
+/hellenic/images/hero.v2.jpg
+/hellenic/images/reader.v1.jpg
+/hellenic/images/skilling.jpg
+/hellenic/images/skilling.v1.jpg
 
 # Python
 __pycache__/
 *.pyc
+.venv/
+venv/
 
-# Playwright
+# Generated reports
 .playwright-mcp/
+playwright-report/
+test-results/
+*.log
